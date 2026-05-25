@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import ContactForm from '../components/ContactForm.jsx'
 import { PageShell } from '../components/SiteChrome.jsx'
+import { ServicePageHero } from '../components/ServicePageLayout.jsx'
 import {
   SITE_EMAIL,
   SITE_EMAIL_HREF,
@@ -92,19 +93,7 @@ const contactDetails = [
 export default function ContactPage() {
   return (
     <PageShell>
-      <div className="contact-page-hero">
-        <div className="contact-page-hero-grid" aria-hidden />
-        <div className="relative mx-auto max-w-6xl px-4 py-16 text-center md:px-6 md:py-20">
-          <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl">Contact</h1>
-          <p className="mt-4 text-sm text-white/85 md:text-base">
-            <Link to="/" className="transition hover:text-white">
-              Home
-            </Link>
-            <span className="mx-2 opacity-70">/</span>
-            <span>Contact</span>
-          </p>
-        </div>
-      </div>
+      <ServicePageHero category="Get in touch" title="Contact" breadcrumb="Contact" />
 
       <main id="main">
         <section className="contact-info-section">

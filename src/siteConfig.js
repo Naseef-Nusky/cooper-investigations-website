@@ -28,6 +28,26 @@ export const digitalForensicsServices = [
   { label: 'Corporate Incident Response', to: '/corporate-incident-response' },
 ]
 
+/** Hero background image per route (from /public) */
+export const routeHeroImages = {
+  '/about': '/private-investigation-agency-1.jpg',
+  '/contact': '/phone-chat-1.jpg',
+  '/privacy-policy': '/data-protection.jpg',
+  '/services/personal-investigation': '/Personal-Investigation-Services.png',
+  '/services/marital-affair-investigation': '/Marital-Affair-Investigation.jpg',
+  '/services/asset-and-vehicle-tracking': '/Asset-and-Vehicle-Tracking.jpg',
+  '/services/corporate-investigations': '/Corporate-investigations-services.jpg',
+  '/services/international-investigation': '/private-investigation2.jpg',
+  '/services/surveillance': '/Covert-surveillance.jpg',
+  '/services/close-protection': '/Close-Protection-Services-1.jpg',
+  '/cyber-security': '/experts-in-cyber-security-UK.jpg',
+  '/corporate-data-recovery': '/Data-Recovery-Expertise-1.jpg',
+  '/forensic-accounting': '/Forensic-Accounting.jpg',
+  '/edisclosure-services': '/Edisclosure-Services.jpg',
+  '/credit-checking-services': '/Employment-background-checks.jpg',
+  '/corporate-incident-response': '/Corporate-Incident-Response.jpg',
+}
+
 export const investigationServices = [
   { label: 'Personal Investigation Services', to: '/services/personal-investigation' },
   { label: 'Marital Affair Investigation Services', to: '/services/marital-affair-investigation' },

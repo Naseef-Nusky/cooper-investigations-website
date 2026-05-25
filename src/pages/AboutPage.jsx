@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { PageShell } from '../components/SiteChrome.jsx'
+import { ServicePageHero } from '../components/ServicePageLayout.jsx'
 import { SITE_PHONE, SITE_PHONE_HREF } from '../siteConfig.js'
 
 function IconSearchBullet({ className = 'h-5 w-5 shrink-0 text-brand-teal' }) {
@@ -43,20 +44,11 @@ const whyPoints = [
 export default function AboutPage() {
   return (
     <PageShell>
-      <div className="about-page-hero">
-        <div className="mx-auto max-w-6xl px-4 py-14 text-center md:px-6 md:py-16">
-          <h1 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
-            About us – Cooper Investigations
-          </h1>
-          <p className="mt-3 text-sm text-white/80 md:text-base">
-            <Link to="/" className="transition hover:text-white">
-              Home
-            </Link>
-            <span className="mx-2">/</span>
-            <span>About us – Cooper Investigations</span>
-          </p>
-        </div>
-      </div>
+      <ServicePageHero
+        category="About Cooper Investigations"
+        title="About us – Cooper Investigations"
+        breadcrumb="About us – Cooper Investigations"
+      />
 
       <main id="main">
         <section className="py-16 md:py-24">

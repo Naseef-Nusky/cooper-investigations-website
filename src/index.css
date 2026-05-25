@@ -758,10 +758,7 @@ body {
   gap: 0.5rem;
 }
 
-/* About page */
-.about-page-hero {
-  background: linear-gradient(135deg, var(--color-brand-green) 0%, #2d5a3d 100%);
-}
+/* About page — hero uses shared .service-page-hero */
 
 .about-section-title {
   font-size: 1.875rem;
@@ -813,9 +810,41 @@ body {
   border-color: #fff;
 }
 
-/* Service pages */
+/* Page heroes (all inner pages) */
 .service-page-hero {
+  min-height: 12rem;
+}
+
+.service-page-hero--fallback {
   background: linear-gradient(135deg, var(--color-brand-navy) 0%, var(--color-brand-green) 55%, #2d6a4f 100%);
+}
+
+.service-page-hero-photo {
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+}
+
+.service-page-hero-photo--graphic {
+  background-color: #0f172a;
+  background-size: auto 75%;
+  background-position: right 35% center;
+}
+
+@media (min-width: 768px) {
+  .service-page-hero-photo--graphic {
+    background-size: auto 85%;
+    background-position: right 20% center;
+  }
+}
+
+.service-page-hero-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(17, 34, 51, 0.92) 0%,
+    rgba(17, 34, 51, 0.78) 45%,
+    rgba(27, 48, 34, 0.85) 100%
+  );
 }
 
 .service-page-hero-grid {
@@ -1089,22 +1118,7 @@ body {
   margin: 0;
 }
 
-/* Contact page */
-.contact-page-hero {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(160deg, #1a4d32 0%, var(--color-brand-green) 45%, #2d6a4f 100%);
-}
-
-.contact-page-hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-}
+/* Contact page — hero uses shared .service-page-hero */
 
 .contact-info-section {
   background: linear-gradient(180deg, #f1f5f9 0%, #e8eef4 100%);
@@ -1345,6 +1359,42 @@ body {
 
 .hero-progress-paused {
   animation-play-state: paused;
+}
+
+/* Hero testimonials panel */
+.hero-testimonial-shell {
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.hero-testimonial-quote {
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes hero-testimonial-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.hero-testimonial-progress {
+  animation: hero-testimonial-progress 6s linear forwards;
+}
+
+.hero-testimonial-progress-paused {
+  animation-play-state: paused;
+}
+
+@media (max-width: 1023px) {
+  .hero-testimonials {
+    margin-inline: auto;
+  }
 }
 
 

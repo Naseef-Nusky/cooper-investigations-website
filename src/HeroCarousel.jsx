@@ -1,29 +1,32 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import HeroTestimonials from './components/HeroTestimonials.jsx'
 
-const HERO_AUTOPLAY_MS = 7000
+const HERO_AUTOPLAY_MS = 8000
 
 const heroSlides = [
   {
     id: 'investigation',
     image:
       "url('https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=2400&q=80')",
-    overlay: 'bg-gradient-to-br from-brand-navy/92 via-brand-navy/65 to-brand-green/75',
+    overlay: 'bg-gradient-to-br from-brand-navy/92 via-brand-navy/70 to-brand-green/80',
+    eyebrow: 'UK & International',
     title: 'Experts in',
     highlight: 'Private Investigation',
     highlightClass: 'bg-gradient-to-r from-emerald-200 via-teal-100 to-cyan-200 bg-clip-text text-transparent',
     subtitle:
-      'Discreet, evidence-led investigations for businesses and individuals across the UK and internationally.',
+      'Discreet, evidence-led investigations for businesses and individuals — with the clarity you need to act decisively.',
   },
   {
     id: 'cyber',
     image: "url('/cyber-security.jpg')",
-    overlay: 'bg-gradient-to-b from-brand-navy/88 via-slate-950/70 to-cyan-950/85',
-    title: 'We are Experts',
-    highlight: 'in Cyber Security',
+    overlay: 'bg-gradient-to-b from-brand-navy/90 via-slate-950/75 to-cyan-950/88',
+    eyebrow: 'Digital Forensics',
+    title: 'Trusted',
+    highlight: 'Cyber Security',
     highlightClass: 'bg-gradient-to-r from-cyan-200 via-sky-100 to-white bg-clip-text text-transparent',
     subtitle:
-      'Protect your organisation with practical assessments, incident response, and security guidance you can act on.',
+      'Incident response, forensic analysis, and practical guidance to protect your organisation when it matters most.',
   },
 ]
 
@@ -84,9 +87,7 @@ export default function HeroCarousel() {
 
   useEffect(() => {
     if (paused) return undefined
-    const timer = setInterval(() => {
-      goNext()
-    }, HERO_AUTOPLAY_MS)
+    const timer = setInterval(goNext, HERO_AUTOPLAY_MS)
     return () => clearInterval(timer)
   }, [paused, goNext])
 
@@ -94,16 +95,12 @@ export default function HeroCarousel() {
     const rect = e.currentTarget.getBoundingClientRect()
     const px = (e.clientX - rect.left) / rect.width - 0.5
     const py = (e.clientY - rect.top) / rect.height - 0.5
-    setTilt({ x: px * 16, y: py * 12 })
+    setTilt({ x: px * 10, y: py * 8 })
   }
 
   const handleMouseLeave = () => {
     setPaused(false)
     setTilt({ x: 0, y: 0 })
-  }
-
-  const contentTilt = {
-    transform: `rotateY(${tilt.x}deg) rotateX(${-tilt.y}deg)`,
   }
 
   const contentEnterClass = direction > 0 ? 'hero-content-slide-next' : 'hero-content-slide-prev'
@@ -120,9 +117,9 @@ export default function HeroCarousel() {
 
   return (
     <section
-      className="hero-slider relative min-h-[min(100svh,900px)] overflow-hidden text-white"
+      className="hero-slider relative min-h-[min(100svh,920px)] overflow-hidden text-white"
       aria-roledescription="carousel"
-      aria-label="Featured services"
+      aria-label="Homepage hero"
       onMouseEnter={() => setPaused(true)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -145,7 +142,7 @@ export default function HeroCarousel() {
               className={`absolute inset-[-5%] bg-cover bg-center bg-no-repeat ${i === activeIndex ? 'hero-ken-burns' : ''}`}
               style={{
                 backgroundImage: s.image,
-                transform: `translate3d(${tilt.x * 0.6}px, ${tilt.y * 0.5}px, 0) scale(1.05)`,
+                transform: `translate3d(${tilt.x * 0.5}px, ${tilt.y * 0.4}px, 0) scale(1.06)`,
               }}
             />
             <div className={`absolute inset-0 ${s.overlay}`} />
@@ -154,14 +151,14 @@ export default function HeroCarousel() {
       })}
 
       <div
-        className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(17,34,51,0.45)_100%)]"
+        className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_30%_40%,transparent_0%,rgba(17,34,51,0.5)_100%)]"
         aria-hidden
       />
 
       <button
         type="button"
         onClick={goPrev}
-        className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full border border-white/25 p-3 text-white/80 transition hover:border-white/50 hover:bg-white/10 hover:text-white md:left-8"
+        className="absolute left-3 top-1/2 z-20 hidden -translate-y-1/2 rounded-full border border-white/25 p-3 text-white/80 transition hover:border-white/50 hover:bg-white/10 hover:text-white lg:flex xl:left-6"
         aria-label="Previous slide"
       >
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -171,7 +168,7 @@ export default function HeroCarousel() {
       <button
         type="button"
         onClick={goNext}
-        className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full border border-white/25 p-3 text-white/80 transition hover:border-white/50 hover:bg-white/10 hover:text-white md:right-8"
+        className="absolute right-3 top-1/2 z-20 hidden -translate-y-1/2 rounded-full border border-white/25 p-3 text-white/80 transition hover:border-white/50 hover:bg-white/10 hover:text-white lg:flex xl:right-6"
         aria-label="Next slide"
       >
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -179,63 +176,85 @@ export default function HeroCarousel() {
         </svg>
       </button>
 
-      <div className="hero-3d-scene relative z-10 mx-auto flex min-h-[min(100svh,900px)] max-w-4xl flex-col items-center justify-center px-6 pb-32 pt-28 text-center md:px-8">
-        <div className="hero-3d-content flex flex-col items-center" style={contentTilt}>
-          <div
-            key={`${slide.id}-${direction}`}
-            className={`hero-slide-copy flex flex-col items-center ${contentEnterClass}`}
-          >
-          <IconSearch className="hero-3d-icon mb-6 h-10 w-10 text-white/90" />
+      <div className="relative z-10 mx-auto flex min-h-[min(100svh,920px)] max-w-6xl flex-col justify-center px-4 pb-28 pt-24 md:px-6 lg:pt-28">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 xl:gap-16">
+          <div className="hero-3d-content text-center lg:text-left" style={{ transform: `rotateY(${tilt.x * 0.4}deg) rotateX(${-tilt.y * 0.35}deg)` }}>
+            <div key={`${slide.id}-${direction}`} className={`hero-slide-copy ${contentEnterClass}`}>
+              <p className="hero-enter hero-enter-delay-1 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100/90 backdrop-blur-sm">
+                <IconSearch className="h-3.5 w-3.5" />
+                {slide.eyebrow}
+              </p>
 
-          <h1 className="hero-3d-title text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
-            <span className="block">{slide.title}</span>
-            <span className={`mt-1 block ${slide.highlightClass}`}>{slide.highlight}</span>
-          </h1>
+              <h1 className="hero-enter hero-enter-delay-2 hero-3d-title mt-6 text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl xl:text-[3.25rem]">
+                <span className="block">{slide.title}</span>
+                <span className={`mt-1 block ${slide.highlightClass}`}>{slide.highlight}</span>
+              </h1>
 
-          <p className="hero-3d-subtitle mx-auto mt-5 max-w-xl text-base text-white/85 md:text-lg">
-            {slide.subtitle}
-          </p>
+              <p className="hero-enter hero-enter-delay-3 hero-3d-subtitle mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/85 md:text-lg lg:mx-0">
+                {slide.subtitle}
+              </p>
 
-          <Link to="/contact" className="hero-3d-cta hero-contact-btn group mt-10">
-            <span>Contact us</span>
-            <svg
-              className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-              aria-hidden
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+              <div className="hero-enter hero-enter-delay-4 mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
+                <Link to="/contact" className="hero-3d-cta hero-contact-btn group w-full sm:w-auto">
+                  <span>Contact us</span>
+                  <svg className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+                <a
+                  href="#services"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-white/30 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/50 hover:bg-white/10 sm:w-auto"
+                >
+                  Our services
+                </a>
+              </div>
+
+              <ul className="hero-enter hero-enter-delay-4 mt-8 flex flex-wrap items-center justify-center gap-3 text-xs text-white/70 lg:justify-start">
+                <li className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm">24/7 support</li>
+                <li className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm">40+ years experience</li>
+                <li className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm">99% client satisfaction</li>
+              </ul>
+            </div>
+
+            <div className="mt-8 hidden items-center gap-2 lg:flex" role="tablist" aria-label="Hero background slides">
+              {heroSlides.map((s, i) => (
+                <button
+                  key={s.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === activeIndex}
+                  aria-label={s.highlight}
+                  onClick={() => goTo(i)}
+                  className={`h-1.5 rounded-full transition-all ${i === activeIndex ? 'w-8 bg-white' : 'w-3 bg-white/35 hover:bg-white/55'}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="hero-enter hero-enter-delay-3 flex justify-center lg:justify-end">
+            <HeroTestimonials paused={paused} />
           </div>
         </div>
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 z-10 h-24 bg-gradient-to-t from-white to-transparent" aria-hidden />
 
-      <div className="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-5">
-        <div className="flex gap-2.5" role="tablist" aria-label="Choose slide">
+      <div className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2 lg:hidden">
+        <div className="flex gap-2" role="tablist" aria-label="Hero slides">
           {heroSlides.map((s, i) => (
             <button
               key={s.id}
               type="button"
               role="tab"
               aria-selected={i === activeIndex}
-              aria-label={`Slide ${i + 1}: ${s.highlight}`}
+              aria-label={s.highlight}
               onClick={() => goTo(i)}
-              className={`h-2.5 w-2.5 transition ${i === activeIndex ? 'bg-white' : 'border border-white/60 bg-white/25 hover:bg-white/50'}`}
+              className={`h-2 w-2 rounded-full transition ${i === activeIndex ? 'bg-white' : 'bg-white/40'}`}
             />
           ))}
         </div>
-
-        <a
-          href="#services"
-          className="flex flex-col items-center gap-2 text-white/70 transition hover:text-white"
-          aria-label="Scroll to services"
-        >
-          <span className="flex h-9 w-5 justify-center rounded-full border border-white/30 p-1">
+        <a href="#services" className="flex flex-col items-center text-white/60 transition hover:text-white" aria-label="Scroll to services">
+          <span className="flex h-8 w-5 justify-center rounded-full border border-white/30 p-1">
             <span className="hero-scroll-dot h-1.5 w-1.5 rounded-full bg-white" />
           </span>
         </a>

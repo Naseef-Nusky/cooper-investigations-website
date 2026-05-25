@@ -1,12 +1,28 @@
-import { Link } from 'react-router-dom'
-import { SITE_PHONE, SITE_PHONE_HREF } from '../siteConfig.js'
+import { Link, useLocation } from 'react-router-dom'
+import { SITE_PHONE, SITE_PHONE_HREF, routeHeroImages } from '../siteConfig.js'
 
-export function ServicePageHero({ title, breadcrumb, category = 'Investigation Services' }) {
+export function ServicePageHero({ title, breadcrumb, category = 'Investigation Services', image }) {
+  const { pathname } = useLocation()
+  const heroImage = image ?? routeHeroImages[pathname]
+  const isGraphic = heroImage?.toLowerCase().endsWith('.png')
+
   return (
-    <div className="service-page-hero relative overflow-hidden">
-      <div className="service-page-hero-grid pointer-events-none absolute inset-0" aria-hidden />
-      <div className="service-page-hero-glow pointer-events-none absolute -right-20 top-0 h-64 w-64 rounded-full bg-brand-teal/20 blur-3xl" aria-hidden />
-      <div className="relative mx-auto max-w-6xl px-4 py-16 text-center md:px-6 md:py-20">
+    <div
+      className={`service-page-hero relative overflow-hidden ${heroImage ? '' : 'service-page-hero--fallback'}`}
+    >
+      {heroImage ? (
+        <>
+          <div
+            className={`service-page-hero-photo pointer-events-none absolute inset-0 ${isGraphic ? 'service-page-hero-photo--graphic' : ''}`}
+            style={{ backgroundImage: `url('${heroImage}')` }}
+            aria-hidden
+          />
+          <div className="service-page-hero-overlay pointer-events-none absolute inset-0" aria-hidden />
+        </>
+      ) : null}
+      <div className="service-page-hero-grid pointer-events-none absolute inset-0 z-[1]" aria-hidden />
+      <div className="service-page-hero-glow pointer-events-none absolute -right-20 top-0 z-[1] h-64 w-64 rounded-full bg-brand-teal/20 blur-3xl" aria-hidden />
+      <div className="relative z-[2] mx-auto max-w-6xl px-4 py-16 text-center md:px-6 md:py-20">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-200/90">{category}</p>
         <h1 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">{title}</h1>
         <p className="mt-4 text-sm text-white/75 md:text-base">
