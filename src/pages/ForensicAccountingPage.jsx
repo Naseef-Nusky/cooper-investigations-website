@@ -131,7 +131,10 @@ export default function ForensicAccountingPage() {
               or regulatory sanctions.
             </p>
             <p className="mt-6 font-medium text-brand-navy">
-              Get in touch, and chat with our experts about your recovery needs.
+              <Link to="/contact" className="text-brand-teal underline-offset-4 hover:underline">
+                Get in touch
+              </Link>
+              , and chat with our experts about your recovery needs.
             </p>
           </div>
         </ServiceContentSection>

@@ -936,6 +936,33 @@ body {
   color: var(--color-brand-teal);
 }
 
+/* Privacy policy */
+.policy-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.policy-section {
+  margin-top: 0.5rem;
+}
+
+.policy-section-body {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: #475569;
+}
+
+@media (min-width: 768px) {
+  .policy-section-body {
+    font-size: 1rem;
+  }
+}
+
 .marital-signs-panel .service-bullet {
   padding: 0.35rem 0;
 }

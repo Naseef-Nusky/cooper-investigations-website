@@ -323,12 +323,12 @@ function LocationsSection() {
                 Private investigators in {city} provide local coverage and rapid response for corporate and private
                 clients.
               </p>
-              <a href="#contact" className="location-card-link">
+              <Link to="/contact" className="location-card-link">
                 <span>Get in touch</span>
                 <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
+              </Link>
             </article>
           ))}
         </div>

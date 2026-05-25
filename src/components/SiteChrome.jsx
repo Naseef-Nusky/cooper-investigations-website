@@ -241,12 +241,12 @@ export function SiteHeader() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="inline-flex items-center justify-center rounded-full bg-brand-navy px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-brand-navy/20 transition hover:bg-brand-green hover:shadow-brand-green/25"
             >
               Get in touch
-            </a>
+            </Link>
           </div>
 
           <button
@@ -337,13 +337,13 @@ export function SiteHeader() {
               <IconMailSmall />
               {SITE_EMAIL}
             </a>
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               onClick={closeMenu}
               className="flex w-full items-center justify-center rounded-full bg-brand-navy py-3 text-sm font-semibold text-white transition hover:bg-brand-green"
             >
               Get in touch
-            </a>
+            </Link>
           </div>
         </nav>
       </div>
@@ -357,7 +357,7 @@ const footerLinks = [
   { label: 'Security Services', href: '/services/close-protection' },
   { label: 'About Us', href: '/about' },
   { label: 'Contact', href: '/contact' },
-  { label: 'Privacy Policy', href: '#' },
+  { label: 'Privacy Policy', href: '/privacy-policy' },
 ]
 
 export function SiteFooter() {

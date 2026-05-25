@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ScrollToTop } from './components/ScrollToTop.jsx'
 import HomePage from './pages/HomePage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import AssetTrackingPage from './pages/AssetTrackingPage.jsx'
@@ -15,10 +16,12 @@ import ForensicAccountingPage from './pages/ForensicAccountingPage.jsx'
 import EdisclosureServicesPage from './pages/EdisclosureServicesPage.jsx'
 import CreditCheckingServicesPage from './pages/CreditCheckingServicesPage.jsx'
 import CorporateIncidentResponsePage from './pages/CorporateIncidentResponsePage.jsx'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage.jsx'
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
@@ -36,6 +39,7 @@ export default function App() {
         <Route path="/credit-checking-services" element={<CreditCheckingServicesPage />} />
         <Route path="/corporate-incident-response" element={<CorporateIncidentResponsePage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
       </Routes>
     </BrowserRouter>
   )

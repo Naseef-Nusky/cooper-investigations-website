@@ -127,7 +127,7 @@ export default function AboutPage() {
               </a>
               .
             </p>
-            <Link to="/#contact" className="about-cta-btn mt-10 inline-flex">
+            <Link to="/contact" className="about-cta-btn mt-10 inline-flex">
               Contact us
             </Link>
           </div>

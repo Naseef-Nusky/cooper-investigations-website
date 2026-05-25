@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const HERO_AUTOPLAY_MS = 7000
 
@@ -195,7 +196,7 @@ export default function HeroCarousel() {
             {slide.subtitle}
           </p>
 
-          <a href="#contact" className="hero-3d-cta hero-contact-btn group mt-10">
+          <Link to="/contact" className="hero-3d-cta hero-contact-btn group mt-10">
             <span>Contact us</span>
             <svg
               className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1"
@@ -207,7 +208,7 @@ export default function HeroCarousel() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </Link>
           </div>
         </div>
       </div>
