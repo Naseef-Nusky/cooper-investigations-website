@@ -4,7 +4,6 @@ import {
   ConsultationCta,
   ServiceBulletList,
   ServiceContentSection,
-  ServiceFeatureGrid,
   ServiceImageCard,
   ServicePageHero,
 } from '../components/ServicePageLayout.jsx'
@@ -12,16 +11,16 @@ import {
 const useCases = [
   { id: 'partner', text: 'Catching a cheating partner' },
   { id: 'employee', text: 'An employee using a company vehicle for personal use or meeting competitors' },
-  { id: 'theft', text: 'The ability to track your vehicle in the event of theft' },
+  { id: 'theft', text: 'Ability to track your vehicle in the event of theft.' },
 ]
 
 const trackerData = [
-  'Status (start/stop)',
-  'Date and time',
-  'Speed',
-  'Distance travelled',
-  'Location — displayed as an address and latitude/longitude',
-  'A link via Street View to each recorded position',
+  { id: 'status', text: 'Status (start/stop)' },
+  { id: 'datetime', text: 'Date and time' },
+  { id: 'speed', text: 'Speed' },
+  { id: 'distance', text: 'Distance traveled' },
+  { id: 'location', text: 'Location (displayed as an address and also latitude/longitude)' },
+  { id: 'streetview', text: 'A link via Street view to each recorded position' },
 ]
 
 export default function AssetTrackingPage() {
@@ -34,46 +33,57 @@ export default function AssetTrackingPage() {
 
       <main id="main">
         <ServiceContentSection>
-          <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
             <div>
-              <h2 className="service-section-title">Asset and vehicle tracking</h2>
+              <h2 className="service-section-title">Asset and Vehicle Tracking</h2>
               <p className="mt-6 leading-relaxed text-slate-600">
-                <strong className="text-brand-navy">Vehicle tracking</strong> is a covert method of monitoring a vehicle&apos;s
-                movements. Using discreet <strong className="text-brand-navy">vehicle trackers</strong>, we help you
-                establish patterns of travel, verify suspicions, and gather evidence you can act on — lawfully and
-                professionally.
+                Vehicle tracking is a covert method of recording the movements of a vehicle 24 hours a day, 7 days a
+                week, 365 days of the year. The vehicle trackers are deployed covertly by our highly trained operatives
+                in places where they won&apos;t be located by the driver/owner. We won&apos;t need the keys to the vehicle
+                or you to be present, just let us know where it is and we&apos;ll do what we do best.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Our investigators deploy and manage tracking with strict confidentiality. Typical scenarios include:
+                There are many reasons why you may want to track the location of a vehicle.
               </p>
               <ServiceBulletList items={useCases} />
+              <p className="mt-6 leading-relaxed text-slate-600">
+                Maybe you just want to confirm that your trust in your partner is justified and wish to check their
+                whereabouts matches where they have stated they&apos;ll be.
+              </p>
             </div>
             <ServiceImageCard
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80"
-              alt="Black taxi on a London street"
+              src="/Asset-and-Vehicle-Tracking.jpg"
+              alt="Black London taxi on a cobblestone street"
             />
           </div>
         </ServiceContentSection>
 
         <ServiceContentSection variant="muted">
-          <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <ServiceImageCard
-              src="https://images.unsplash.com/photo-1569336412537-404f83a3a337?auto=format&fit=crop&w=1200&q=80"
-              alt="Smartphone displaying GPS map tracking"
-            />
-            <div>
-              <h2 className="service-section-title">Live intelligence at your fingertips</h2>
-              <p className="mt-6 leading-relaxed text-slate-600">
-                Our tracking solutions provide detailed journey data so you understand where a vehicle has been, when it
-                moved, and how long it stayed at each location — presented in a clear, actionable format.
-              </p>
-              <p className="mt-4 leading-relaxed text-slate-600">Reports can include:</p>
-              <ServiceFeatureGrid features={trackerData} />
-              <p className="mt-8 leading-relaxed text-slate-600">
-                The service is carried out discreetly and covertly. You receive professional analysis from investigators
-                who understand how to interpret movement data and present findings suitable for personal or corporate
-                decision-making.
-              </p>
+          <div className="mx-auto max-w-6xl px-4 md:px-6">
+            <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
+              <div className="lg:col-span-5 lg:sticky lg:top-28">
+                <ServiceImageCard
+                  src="/vehicle-tracker.jpg"
+                  alt="Hand holding a smartphone displaying GPS map tracking"
+                />
+              </div>
+
+              <div className="lg:col-span-7">
+                <p className="leading-relaxed text-slate-600">
+                  Once the car tracker has been removed you will be sent an email containing the downloaded data from
+                  the device. This will outline the following information for the duration that it was deployed:
+                </p>
+                <ServiceBulletList items={trackerData} />
+                <p className="mt-6 leading-relaxed text-slate-600">
+                  This won&apos;t give you the irrefutable evidence that a physical surveillance would due to it only
+                  providing the vehicle&apos;s location. It doesn&apos;t prove who is driving the vehicle, who else is in
+                  it and what their behaviour towards one another is.
+                </p>
+                <p className="mt-4 leading-relaxed text-slate-600">
+                  The vehicle tracker is discreet and completely covert so there&apos;s no need to worry about it being
+                  discovered or compromised.
+                </p>
+              </div>
             </div>
           </div>
         </ServiceContentSection>
@@ -84,11 +94,10 @@ export default function AssetTrackingPage() {
               <div>
                 <h3 className="text-xl font-bold md:text-2xl">Need covert tracking you can trust?</h3>
                 <p className="mt-2 max-w-xl text-sm text-white/85 md:text-base">
-                  Speak to our team in complete confidence. We&apos;ll advise on lawful options and tailor a proportionate
-                  plan to your objectives.
+                  Speak to our team in complete confidence about lawful vehicle tracking for your situation.
                 </p>
               </div>
-              <Link to="/#contact" className="service-highlight-btn shrink-0">
+              <Link to="/contact" className="service-highlight-btn shrink-0">
                 Request a consultation
               </Link>
             </div>

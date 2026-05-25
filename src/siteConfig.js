@@ -13,17 +13,26 @@ export const SITE_ADDRESS = {
 
 export const navLinks = [
   { to: '/about', label: 'About Us' },
-  { to: '/#services', label: 'Investigation Services' },
-  { to: '/#forensics', label: 'Digital Forensics' },
-  { to: '/#security', label: 'Security Services' },
+  { to: '/#services', label: 'Investigation Services', menu: 'investigation' },
+  { to: '/cyber-security', label: 'Digital Forensics', menu: 'forensics' },
+  { to: '/services/close-protection', label: 'Security Services' },
   { to: '/contact', label: 'Contact' },
 ]
 
+export const digitalForensicsServices = [
+  { label: 'Cyber Security', to: '/cyber-security' },
+  { label: 'Corporate Data Recovery', to: '/corporate-data-recovery' },
+  { label: 'Forensic Accounting', to: '/forensic-accounting' },
+  { label: 'Edisclosure Services', to: '/edisclosure-services' },
+  { label: 'Credit Checking Services', to: '/credit-checking-services' },
+  { label: 'Corporate Incident Response', to: '/corporate-incident-response' },
+]
+
 export const investigationServices = [
-  { label: 'Personal Investigation Services', to: '/#services' },
-  { label: 'Marital Affair Investigation Services', to: '/#services' },
+  { label: 'Personal Investigation Services', to: '/services/personal-investigation' },
+  { label: 'Marital Affair Investigation Services', to: '/services/marital-affair-investigation' },
   { label: 'Asset and Vehicle Tracking Services', to: '/services/asset-and-vehicle-tracking' },
-  { label: 'Corporate Investigations Services', to: '/#services' },
-  { label: 'International Investigation Services', to: '/#services' },
-  { label: 'Surveillance Services', to: '/#services' },
+  { label: 'Corporate Investigations Services', to: '/services/corporate-investigations' },
+  { label: 'International Investigation Services', to: '/services/international-investigation' },
+  { label: 'Surveillance Services', to: '/services/surveillance' },
 ]

@@ -59,7 +59,7 @@ const contactDetails = [
     id: 'phone',
     icon: IconPhone,
     content: (
-      <a href={SITE_PHONE_HREF} className="contact-detail-link">
+      <a href={SITE_PHONE_HREF} className="contact-teal-link">
         {SITE_PHONE}
       </a>
     ),
@@ -68,7 +68,7 @@ const contactDetails = [
     id: 'email',
     icon: IconEnvelope,
     content: (
-      <a href={SITE_EMAIL_HREF} className="contact-detail-link">
+      <a href={SITE_EMAIL_HREF} className="contact-teal-link">
         {SITE_EMAIL}
       </a>
     ),
@@ -76,13 +76,13 @@ const contactDetails = [
   {
     id: 'location',
     icon: IconPin,
-    content: <span>70 Gracechurch Street, London, England, EC3V 0HR</span>,
+    content: <span className="text-slate-700">70 Gracechurch Street, London, England, EC3V 0HR</span>,
   },
   {
     id: 'share',
     icon: IconShare,
     content: (
-      <a href={SITE_WEBSITE_HREF} className="contact-detail-link" target="_blank" rel="noopener noreferrer">
+      <a href={SITE_WEBSITE_HREF} className="contact-teal-link" target="_blank" rel="noopener noreferrer">
         Share Our Website
       </a>
     ),
@@ -92,61 +92,63 @@ const contactDetails = [
 export default function ContactPage() {
   return (
     <PageShell>
-      <div className="contact-page-hero relative overflow-hidden">
-        <div className="contact-page-hero-grid pointer-events-none absolute inset-0" aria-hidden />
-        <div className="relative mx-auto max-w-6xl px-4 py-14 text-center md:px-6 md:py-16">
-          <h1 className="text-3xl font-bold tracking-tight text-white md:text-4xl">Contact</h1>
-          <p className="mt-3 text-sm text-white/80 md:text-base">
+      <div className="contact-page-hero">
+        <div className="contact-page-hero-grid" aria-hidden />
+        <div className="relative mx-auto max-w-6xl px-4 py-16 text-center md:px-6 md:py-20">
+          <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl">Contact</h1>
+          <p className="mt-4 text-sm text-white/85 md:text-base">
             <Link to="/" className="transition hover:text-white">
               Home
             </Link>
-            <span className="mx-2">/</span>
+            <span className="mx-2 opacity-70">/</span>
             <span>Contact</span>
           </p>
         </div>
       </div>
 
       <main id="main">
-        <section className="py-16 md:py-24">
-          <div className="mx-auto grid max-w-6xl gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div className="contact-info-card rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm md:p-10">
-              <h2 className="service-section-title">Get In Touch</h2>
-              <ul className="mt-8 space-y-5">
+        <section className="contact-info-section">
+          <div className="mx-auto grid max-w-6xl items-stretch gap-10 px-4 py-16 md:grid-cols-2 md:gap-12 md:px-6 md:py-20 lg:gap-16">
+            <div className="contact-info-left">
+              <h2 className="contact-page-heading">Get In Touch</h2>
+              <ul className="contact-info-list">
                 {contactDetails.map((item) => {
                   const Icon = item.icon
                   return (
-                    <li key={item.id} className="flex gap-4">
+                    <li key={item.id} className="contact-info-item">
                       <span className="contact-info-icon">
                         <Icon className="h-5 w-5" />
                       </span>
-                      <span className="text-sm leading-relaxed text-slate-600 md:text-base">{item.content}</span>
+                      <span className="contact-info-text">{item.content}</span>
                     </li>
                   )
                 })}
               </ul>
             </div>
 
-            <div className="contact-expert-card flex flex-col items-center justify-center rounded-2xl border border-slate-200/80 bg-slate-50 p-8 text-center shadow-sm md:p-12">
-              <h2 className="text-xl font-bold text-brand-navy md:text-2xl">Get in touch with our expert team</h2>
-              <img src="/logo.png" alt="Cooper Investigations" className="mt-8 h-24 w-auto object-contain md:h-28" />
-              <a
-                href={SITE_PHONE_HREF}
-                className="mt-8 text-3xl font-bold tracking-tight text-brand-navy transition hover:text-brand-teal md:text-4xl"
-              >
+            <div className="contact-expert-panel">
+              <h2 className="contact-page-heading text-center">Get in touch with our expert team</h2>
+              <img
+                src="/logo.png"
+                alt="Cooper Investigations"
+                className="mx-auto mt-10 h-28 w-auto object-contain md:h-32"
+              />
+              <a href={SITE_PHONE_HREF} className="contact-hero-phone">
                 {SITE_PHONE}
               </a>
             </div>
           </div>
         </section>
 
-        <section className="contact-form-section relative overflow-hidden py-16 md:py-24">
+        <section className="contact-form-section">
           <div className="contact-form-section-bg" aria-hidden />
-          <div className="relative mx-auto max-w-xl px-4 md:px-6">
+          <div className="contact-form-section-overlay" aria-hidden />
+          <div className="relative mx-auto max-w-2xl px-4 py-16 md:px-6 md:py-24">
             <div className="text-center text-white">
-              <h2 className="text-3xl font-bold md:text-4xl">Contact us</h2>
-              <p className="mt-2 text-lg text-white/85">Drop us a message</p>
+              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Contact us</h2>
+              <p className="mt-3 text-lg text-white/90">Drop us a message</p>
             </div>
-            <ContactForm className="mt-10" />
+            <ContactForm className="mt-12" />
           </div>
         </section>
       </main>

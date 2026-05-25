@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 import { SITE_PHONE, SITE_PHONE_HREF } from '../siteConfig.js'
 
-export function ServicePageHero({ title, breadcrumb }) {
+export function ServicePageHero({ title, breadcrumb, category = 'Investigation Services' }) {
   return (
     <div className="service-page-hero relative overflow-hidden">
       <div className="service-page-hero-grid pointer-events-none absolute inset-0" aria-hidden />
       <div className="service-page-hero-glow pointer-events-none absolute -right-20 top-0 h-64 w-64 rounded-full bg-brand-teal/20 blur-3xl" aria-hidden />
       <div className="relative mx-auto max-w-6xl px-4 py-16 text-center md:px-6 md:py-20">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-200/90">Investigation Services</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-200/90">{category}</p>
         <h1 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">{title}</h1>
         <p className="mt-4 text-sm text-white/75 md:text-base">
           <Link to="/" className="transition hover:text-white">
@@ -67,11 +67,37 @@ export function ConsultationCta() {
           </a>
           .
         </p>
-        <Link to="/#contact" className="about-cta-btn mt-10 inline-flex">
+        <Link to="/contact" className="about-cta-btn mt-10 inline-flex">
           Contact us
         </Link>
       </div>
     </section>
+  )
+}
+
+export function ServiceSubsection({ title, children }) {
+  return (
+    <div className="service-subsection mt-8 first:mt-6">
+      <h3 className="text-sm font-bold uppercase tracking-wider text-brand-navy">{title}</h3>
+      <div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-600 md:text-base">{children}</div>
+    </div>
+  )
+}
+
+export function ServiceTimelineList({ items }) {
+  return (
+    <ul className="protection-timeline">
+      {items.map((item) => (
+        <li key={item.title} className="protection-timeline-item">
+          <h3 className="protection-timeline-title">{item.title}</h3>
+          <div className="protection-timeline-text">
+            {item.paragraphs.map((text) => (
+              <p key={text.slice(0, 48)}>{text}</p>
+            ))}
+          </div>
+        </li>
+      ))}
+    </ul>
   )
 }
 
@@ -86,6 +112,16 @@ export function ServiceImageCard({ src, alt }) {
       <div className="relative overflow-hidden">
         <img src={src} alt={alt} className="aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-105" />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/50 via-transparent to-transparent" aria-hidden />
+      </div>
+    </div>
+  )
+}
+
+export function ServiceGraphicCard({ src, alt }) {
+  return (
+    <div className="service-graphic-card overflow-hidden rounded-2xl border border-slate-200/80 shadow-lg">
+      <div className="service-graphic-card-inner flex aspect-[4/3] items-center justify-center p-6 md:p-10">
+        <img src={src} alt={alt} className="max-h-full w-full object-contain transition duration-700 hover:scale-[1.02]" />
       </div>
     </div>
   )

@@ -73,8 +73,8 @@ export default function AboutPage() {
             </div>
             <div className="overflow-hidden rounded-2xl shadow-xl">
               <img
-                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80"
-                alt="Investigation planning with notebook and magnifying glass"
+                src="/private-investigation-agency-1.jpg"
+                alt="Private investigation agency professional at work"
                 className="aspect-[4/3] w-full object-cover"
                 width={800}
                 height={600}
@@ -87,8 +87,8 @@ export default function AboutPage() {
           <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
             <div className="order-2 overflow-hidden rounded-2xl shadow-xl md:order-1">
               <img
-                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
-                alt="Professional working on a laptop"
+                src="/private-investigation2.jpg"
+                alt="Private investigator conducting confidential work"
                 className="aspect-[4/3] w-full object-cover"
                 width={800}
                 height={600}

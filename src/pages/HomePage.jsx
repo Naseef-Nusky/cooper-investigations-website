@@ -19,7 +19,7 @@ const services = [
     title: 'Digital Forensics',
     description:
       'Secure collection, preservation, and analysis of digital evidence with clear reporting for legal and regulatory matters.',
-    href: '/about',
+    href: '/cyber-security',
     icon: 'document',
     accent: 'from-slate-600 to-forensics',
     iconBg: 'bg-gradient-to-br from-slate-600 to-forensics',
@@ -29,7 +29,7 @@ const services = [
     title: 'Cyber Security',
     description:
       'Practical guidance and assessments to strengthen your defences and respond confidently to security incidents.',
-    href: '/about',
+    href: '/cyber-security',
     icon: 'lock',
     accent: 'from-cyber-mint to-brand-teal',
     iconBg: 'bg-gradient-to-br from-cyber-mint to-brand-teal',

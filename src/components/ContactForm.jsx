@@ -14,6 +14,14 @@ function IconEnvelope({ className = 'h-5 w-5' }) {
   )
 }
 
+function IconAt({ className = 'h-5 w-5' }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm0 0v1.5a2.5 2.5 0 01-5 0V12m5 0v1.5a2.5 2.5 0 01-5 0" />
+    </svg>
+  )
+}
+
 function IconPhone({ className = 'h-5 w-5' }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -51,10 +59,10 @@ function IconPencil({ className = 'h-5 w-5' }) {
 }
 
 const fields = [
-  { icon: IconUser, placeholder: 'Your name *', type: 'text', name: 'name', required: true },
-  { icon: IconEnvelope, placeholder: 'Your email *', type: 'email', name: 'email', required: true },
-  { icon: IconDocument, placeholder: 'Subject *', type: 'text', name: 'subject', required: true },
-  { icon: IconPhone, placeholder: 'Phone *', type: 'tel', name: 'phone', required: true },
+  { icon: IconUser, label: 'Your name *', type: 'text', name: 'name', required: true },
+  { icon: IconAt, label: 'Your email *', type: 'email', name: 'email', required: true },
+  { icon: IconDocument, label: 'Subject *', type: 'text', name: 'subject', required: true },
+  { icon: IconPhone, label: 'Phone *', type: 'tel', name: 'phone', required: true },
 ]
 
 export default function ContactForm({ className = '' }) {
@@ -63,37 +71,51 @@ export default function ContactForm({ className = '' }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`contact-form space-y-4 ${className}`}>
+    <form onSubmit={handleSubmit} className={`contact-form ${className}`}>
       {fields.map((field) => {
         const Icon = field.icon
         return (
-          <label key={field.name} className="contact-form-field flex items-center gap-3">
-            <span className="text-slate-400">
-              <Icon />
-            </span>
-            <input
-              className="min-w-0 flex-1 border-0 bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-500"
-              type={field.type}
-              name={field.name}
-              placeholder={field.placeholder}
-              required={field.required}
-              autoComplete={field.name === 'email' ? 'email' : field.name === 'name' ? 'name' : field.name === 'phone' ? 'tel' : undefined}
-            />
-          </label>
+          <div key={field.name} className="contact-form-group">
+            <label className="contact-form-label" htmlFor={`contact-${field.name}`}>
+              {field.label}
+            </label>
+            <div className="contact-form-input-wrap">
+              <span className="contact-form-input-icon" aria-hidden>
+                <Icon />
+              </span>
+              <input
+                id={`contact-${field.name}`}
+                className="contact-form-input"
+                type={field.type}
+                name={field.name}
+                required={field.required}
+                autoComplete={
+                  field.name === 'email' ? 'email' : field.name === 'name' ? 'name' : field.name === 'phone' ? 'tel' : undefined
+                }
+              />
+            </div>
+          </div>
         )
       })}
-      <label className="contact-form-field flex gap-3">
-        <span className="pt-1 text-slate-400">
-          <IconPencil />
-        </span>
-        <textarea
-          className="min-h-[120px] w-full resize-y border-0 bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-500"
-          name="message"
-          placeholder="Your message (optional)"
-          rows={4}
-        />
-      </label>
-      <button type="submit" className="contact-form-submit w-full">
+
+      <div className="contact-form-group">
+        <label className="contact-form-label" htmlFor="contact-message">
+          Your message (optional)
+        </label>
+        <div className="contact-form-input-wrap contact-form-textarea-wrap">
+          <span className="contact-form-input-icon contact-form-input-icon-top" aria-hidden>
+            <IconPencil />
+          </span>
+          <textarea
+            id="contact-message"
+            className="contact-form-input contact-form-textarea"
+            name="message"
+            rows={5}
+          />
+        </div>
+      </div>
+
+      <button type="submit" className="contact-form-submit">
         SUBMIT
       </button>
     </form>

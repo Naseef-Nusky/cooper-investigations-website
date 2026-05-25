@@ -10,6 +10,7 @@ import {
   SITE_ADDRESS,
   navLinks,
   investigationServices,
+  digitalForensicsServices,
 } from '../siteConfig.js'
 
 function LogoMark({ className = '' }) {
@@ -48,13 +49,14 @@ function IconMailSmall({ className = 'h-4 w-4' }) {
   )
 }
 
-function NavLink({ link, onNavigate, className }) {
+function NavLink({ link, onNavigate, className, isActive: isActiveOverride }) {
   const location = useLocation()
   const isHash = link.to.includes('#')
   const isActive =
-    link.to === '/about'
+    isActiveOverride ??
+    (link.to === '/about'
       ? location.pathname === '/about'
-      : !isHash && location.pathname === link.to
+      : !isHash && location.pathname === link.to)
 
   if (isHash) {
     return (
@@ -71,10 +73,83 @@ function NavLink({ link, onNavigate, className }) {
   )
 }
 
+function NavDropdown({ label, parentLink, items, open, onOpen, onClose }) {
+  const location = useLocation()
+  const isChildActive = items.some((item) => location.pathname === item.to)
+  const isHash = parentLink.to.includes('#')
+  const triggerClass = `nav-menu-trigger nav-link relative rounded-lg px-3 py-2 text-sm font-medium transition hover:bg-slate-100/80 hover:text-brand-navy ${
+    open || isChildActive ? 'text-brand-teal' : 'text-slate-600'
+  }`
+
+  const trigger = isHash ? (
+    <a href={parentLink.to} className={triggerClass} aria-expanded={open}>
+      {parentLink.label}
+    </a>
+  ) : (
+    <Link
+      to={parentLink.to}
+      className={triggerClass}
+      aria-expanded={open}
+      aria-current={isChildActive && location.pathname === parentLink.to ? 'page' : undefined}
+    >
+      {parentLink.label}
+    </Link>
+  )
+
+  return (
+    <div className="relative" onMouseEnter={onOpen} onMouseLeave={onClose}>
+      {trigger}
+      <div
+        className={`absolute left-0 top-full z-50 min-w-[17rem] pt-2 transition ${open ? 'visible opacity-100' : 'invisible opacity-0'}`}
+      >
+        <div className="nav-dropdown-panel" role="menu" aria-label={`${label} submenu`}>
+          {items.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              role="menuitem"
+              className="nav-dropdown-link"
+              aria-current={location.pathname === item.to ? 'page' : undefined}
+              onClick={onClose}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function MobileNavGroup({ title, items, onNavigate }) {
+  const location = useLocation()
+
+  return (
+    <div className="rounded-xl border border-slate-100 bg-slate-50/80 p-2">
+      <p className="px-3 py-2 text-xs font-bold uppercase tracking-wider text-brand-teal">{title}</p>
+      <ul className="space-y-0.5">
+        {items.map((item) => (
+          <li key={item.to}>
+            <Link
+              to={item.to}
+              onClick={onNavigate}
+              className="block rounded-lg px-3 py-2.5 text-sm text-slate-600 transition hover:bg-white hover:text-brand-navy"
+              aria-current={location.pathname === item.to ? 'page' : undefined}
+            >
+              {item.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
+  const [investigationOpen, setInvestigationOpen] = useState(false)
+  const [forensicsOpen, setForensicsOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -92,8 +167,12 @@ export function SiteHeader() {
 
   function closeMenu() {
     setMenuOpen(false)
-    setServicesOpen(false)
+    setInvestigationOpen(false)
+    setForensicsOpen(false)
   }
+
+  const navItemClass =
+    'nav-link relative rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100/80 hover:text-brand-navy'
 
   return (
     <header className="sticky top-0 z-50">
@@ -130,44 +209,35 @@ export function SiteHeader() {
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
-            {navLinks.map((link) =>
-              link.label === 'Investigation Services' ? (
-                <div
-                  key={link.to}
-                  className="relative"
-                  onMouseEnter={() => setServicesOpen(true)}
-                  onMouseLeave={() => setServicesOpen(false)}
-                >
-                  <NavLink
-                    link={link}
-                    className="nav-link relative rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100/80 hover:text-brand-navy"
+            {navLinks.map((link) => {
+              if (link.menu === 'investigation') {
+                return (
+                  <NavDropdown
+                    key={link.to}
+                    label={link.label}
+                    parentLink={link}
+                    items={investigationServices}
+                    open={investigationOpen}
+                    onOpen={() => setInvestigationOpen(true)}
+                    onClose={() => setInvestigationOpen(false)}
                   />
-                  <div
-                    className={`absolute left-0 top-full z-50 min-w-[16rem] pt-2 transition ${servicesOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}
-                  >
-                    <ul className="rounded-lg border border-slate-200 bg-white py-2 shadow-xl">
-                      {investigationServices.map((item) => (
-                        <li key={item.label}>
-                          <Link
-                            to={item.to}
-                            className="block px-4 py-2.5 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-brand-navy"
-                            onClick={() => setServicesOpen(false)}
-                          >
-                            {item.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ) : (
-                <NavLink
-                  key={link.to}
-                  link={link}
-                  className="nav-link relative rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100/80 hover:text-brand-navy"
-                />
-              ),
-            )}
+                )
+              }
+              if (link.menu === 'forensics') {
+                return (
+                  <NavDropdown
+                    key={link.to}
+                    label={link.label}
+                    parentLink={link}
+                    items={digitalForensicsServices}
+                    open={forensicsOpen}
+                    onOpen={() => setForensicsOpen(true)}
+                    onClose={() => setForensicsOpen(false)}
+                  />
+                )
+              }
+              return <NavLink key={link.to} link={link} className={navItemClass} />
+            })}
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
@@ -231,15 +301,32 @@ export function SiteHeader() {
               </svg>
             </button>
           </div>
-          <div className="flex flex-1 flex-col gap-1 overflow-y-auto p-4">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                link={link}
-                onNavigate={closeMenu}
-                className="rounded-xl px-4 py-3.5 text-base font-medium text-slate-700 transition hover:bg-slate-50 hover:text-brand-navy"
-              />
-            ))}
+          <div className="flex flex-1 flex-col gap-2 overflow-y-auto p-4">
+            <NavLink
+              link={navLinks.find((l) => l.label === 'About Us')}
+              onNavigate={closeMenu}
+              className="rounded-xl px-4 py-3.5 text-base font-medium text-slate-700 transition hover:bg-slate-50 hover:text-brand-navy"
+            />
+            <MobileNavGroup
+              title="Investigation Services"
+              items={investigationServices}
+              onNavigate={closeMenu}
+            />
+            <MobileNavGroup
+              title="Digital Forensics"
+              items={digitalForensicsServices}
+              onNavigate={closeMenu}
+            />
+            <NavLink
+              link={navLinks.find((l) => l.label === 'Security Services')}
+              onNavigate={closeMenu}
+              className="rounded-xl px-4 py-3.5 text-base font-medium text-slate-700 transition hover:bg-slate-50 hover:text-brand-navy"
+            />
+            <NavLink
+              link={navLinks.find((l) => l.label === 'Contact')}
+              onNavigate={closeMenu}
+              className="rounded-xl px-4 py-3.5 text-base font-medium text-slate-700 transition hover:bg-slate-50 hover:text-brand-navy"
+            />
           </div>
           <div className="border-t border-slate-100 p-4">
             <a href={SITE_PHONE_HREF} className="mb-3 flex items-center gap-2 text-sm text-slate-600" onClick={closeMenu}>
@@ -266,8 +353,8 @@ export function SiteHeader() {
 
 const footerLinks = [
   { label: 'Investigation Services', href: '/#services' },
-  { label: 'Digital Forensics', href: '/#forensics' },
-  { label: 'Security Services', href: '/#security' },
+  { label: 'Digital Forensics', href: '/cyber-security' },
+  { label: 'Security Services', href: '/services/close-protection' },
   { label: 'About Us', href: '/about' },
   { label: 'Contact', href: '/contact' },
   { label: 'Privacy Policy', href: '#' },
