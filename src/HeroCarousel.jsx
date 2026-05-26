@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import HeroTestimonials from './components/HeroTestimonials.jsx'
 
-const HERO_AUTOPLAY_MS = 8000
+const HERO_AUTOPLAY_MS = 5000
 
 const heroSlides = [
   {
@@ -19,7 +18,7 @@ const heroSlides = [
   },
   {
     id: 'cyber',
-    image: "url('/cyber-security.jpg')",
+    image: "url('/experts-in-cyber-security-UK.jpg')",
     overlay: 'bg-gradient-to-b from-brand-navy/90 via-slate-950/75 to-cyan-950/88',
     eyebrow: 'Digital Forensics',
     title: 'Trusted',
@@ -79,6 +78,9 @@ export default function HeroCarousel() {
     changeSlide((activeIndex - 1 + slideCount) % slideCount, -1)
   }, [activeIndex, slideCount, changeSlide])
 
+  const goNextRef = useRef(goNext)
+  goNextRef.current = goNext
+
   useEffect(() => {
     if (!isTransitioning) return undefined
     const timer = setTimeout(() => setIsTransitioning(false), SLIDE_TRANSITION_MS)
@@ -87,9 +89,16 @@ export default function HeroCarousel() {
 
   useEffect(() => {
     if (paused) return undefined
-    const timer = setInterval(goNext, HERO_AUTOPLAY_MS)
+
+    const timer = setInterval(() => goNextRef.current(), HERO_AUTOPLAY_MS)
     return () => clearInterval(timer)
-  }, [paused, goNext])
+  }, [paused])
+
+  useEffect(() => {
+    const onVisibility = () => setPaused(document.hidden)
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => document.removeEventListener('visibilitychange', onVisibility)
+  }, [])
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -99,7 +108,7 @@ export default function HeroCarousel() {
   }
 
   const handleMouseLeave = () => {
-    setPaused(false)
+    if (window.matchMedia('(hover: hover)').matches) setPaused(false)
     setTilt({ x: 0, y: 0 })
   }
 
@@ -120,7 +129,9 @@ export default function HeroCarousel() {
       className="hero-slider relative min-h-[min(100svh,920px)] overflow-hidden text-white"
       aria-roledescription="carousel"
       aria-label="Homepage hero"
-      onMouseEnter={() => setPaused(true)}
+      onMouseEnter={() => {
+        if (window.matchMedia('(hover: hover)').matches) setPaused(true)
+      }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -177,9 +188,11 @@ export default function HeroCarousel() {
       </button>
 
       <div className="relative z-10 mx-auto flex min-h-[min(100svh,920px)] max-w-6xl flex-col justify-center px-4 pb-28 pt-24 md:px-6 lg:pt-28">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 xl:gap-16">
-          <div className="hero-3d-content text-center lg:text-left" style={{ transform: `rotateY(${tilt.x * 0.4}deg) rotateX(${-tilt.y * 0.35}deg)` }}>
-            <div key={`${slide.id}-${direction}`} className={`hero-slide-copy ${contentEnterClass}`}>
+        <div
+          className="hero-3d-content mx-auto max-w-2xl text-center lg:mx-0 lg:max-w-xl lg:text-left"
+          style={{ transform: `rotateY(${tilt.x * 0.4}deg) rotateX(${-tilt.y * 0.35}deg)` }}
+        >
+          <div key={`${slide.id}-${direction}`} className={`hero-slide-copy ${contentEnterClass}`}>
               <p className="hero-enter hero-enter-delay-1 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100/90 backdrop-blur-sm">
                 <IconSearch className="h-3.5 w-3.5" />
                 {slide.eyebrow}
@@ -229,11 +242,6 @@ export default function HeroCarousel() {
                 />
               ))}
             </div>
-          </div>
-
-          <div className="hero-enter hero-enter-delay-3 flex justify-center lg:justify-end">
-            <HeroTestimonials paused={paused} />
-          </div>
         </div>
       </div>
 

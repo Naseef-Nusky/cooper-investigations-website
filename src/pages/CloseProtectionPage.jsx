@@ -6,7 +6,9 @@ import {
   ServiceImageCard,
   ServicePageHero,
   ServiceSubsection,
-  ServiceTimelineList,
+  ServiceCompactList,
+  serviceSideColsLg,
+  serviceSplitCols,
 } from '../components/ServicePageLayout.jsx'
 
 const highEndSecurityItems = [
@@ -48,10 +50,20 @@ export default function CloseProtectionPage() {
 
       <main id="main">
         <ServiceContentSection>
-          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div>
-              <h2 className="service-section-title">Close Protection Services</h2>
-              <p className="mt-6 leading-relaxed text-slate-600">
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`service-section-title ${serviceSplitCols.topic}`}>Close Protection Services</h2>
+            <div className={serviceSplitCols.image}>
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/Close-Protection-Services-1.jpg"
+                  alt="Secure entrance with close protection detail"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
+            </div>
+            <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
+              <p className="leading-relaxed text-slate-600">
                 We offer a range of reputable security options, tailored to provide complete security and lifestyle
                 management for high net worth individuals, companies and properties. Through our security company you
                 can hire bodyguards, set up personal protection schemes, hire venue security and contract travel security
@@ -71,29 +83,27 @@ export default function CloseProtectionPage() {
                 </p>
               </ServiceSubsection>
             </div>
-
-            <ServiceImageCard
-              src="/Close-Protection-Services-1.jpg"
-              alt="Secure entrance with close protection detail"
-            />
           </div>
         </ServiceContentSection>
 
         <ServiceContentSection variant="muted">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-              <div className="lg:col-span-5 lg:sticky lg:top-28">
-                <ServiceImageCard
-                  src="/private-Security-Services.jpg"
-                  alt="Close protection officer in formal attire"
-                />
-              </div>
-
-              <div className="lg:col-span-7">
-                <h2 className="service-section-title">Close Protection Services – High-end security</h2>
-                <div className="protection-content-panel mt-8">
-                  <ServiceTimelineList items={highEndSecurityItems} />
+            <div className="grid items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
+              <h2 className={`service-section-title ${serviceSideColsLg.topic}`}>
+                Close Protection Services – High-end security
+              </h2>
+              <div className={serviceSideColsLg.image}>
+                <div className="flex h-full min-h-0 flex-col lg:sticky lg:top-28">
+                  <ServiceImageCard
+                    src="/private-Security-Services.jpg"
+                    alt="Close protection officer in formal attire"
+                    tall
+                    className="min-h-0 flex-1"
+                  />
                 </div>
+              </div>
+              <div className={`${serviceSideColsLg.body} mt-6 md:mt-0`}>
+                <ServiceCompactList items={highEndSecurityItems} />
               </div>
             </div>
           </div>

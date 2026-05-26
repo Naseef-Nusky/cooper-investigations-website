@@ -6,6 +6,8 @@ import {
   ServiceImageCard,
   ServicePageHero,
   ServiceSubsection,
+  serviceSideColsLg,
+  serviceSplitCols,
 } from '../components/ServicePageLayout.jsx'
 
 export default function CreditCheckingServicesPage() {
@@ -19,10 +21,20 @@ export default function CreditCheckingServicesPage() {
 
       <main id="main">
         <ServiceContentSection>
-          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div>
-              <h2 className="service-section-title">Employment background checks</h2>
-              <p className="mt-6 leading-relaxed text-slate-600">
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`service-section-title ${serviceSplitCols.topic}`}>Employment background checks</h2>
+            <div className={serviceSplitCols.image}>
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/Employment-background-checks.jpg"
+                  alt="Credit card held over a laptop during employment background screening"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
+            </div>
+            <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
+              <p className="leading-relaxed text-slate-600">
                 Making the right hiring decisions can never be left to chance. From start-ups to global companies, we
                 work with businesses of all shapes and sizes to help understand your professional screening needs, and
                 integrate seamlessly into your recruitment process for fast, reliable results. With a comprehensive list
@@ -42,27 +54,25 @@ export default function CreditCheckingServicesPage() {
                 </p>
               </ServiceSubsection>
             </div>
-
-            <ServiceImageCard
-              src="/Employment-background-checks.jpg"
-              alt="Credit card held over a laptop during employment background screening"
-            />
           </div>
         </ServiceContentSection>
 
         <ServiceContentSection variant="muted">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-              <div className="lg:col-span-5 lg:sticky lg:top-28">
-                <ServiceImageCard
-                  src="/Employment-background-checks.jpg"
-                  alt="Pre-employment credit and background check"
-                />
+            <div className="grid items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
+              <h2 className={`service-section-title ${serviceSideColsLg.topic}`}>Here for all Businesses</h2>
+              <div className={serviceSideColsLg.image}>
+                <div className="flex h-full min-h-0 flex-col lg:sticky lg:top-28">
+                  <ServiceImageCard
+                    src="/Employment-background-checks.jpg"
+                    alt="Pre-employment credit and background check"
+                    tall
+                    className="min-h-0 flex-1"
+                  />
+                </div>
               </div>
-
-              <div className="lg:col-span-7">
-                <h2 className="service-section-title">Here for all Businesses</h2>
-                <p className="mt-6 leading-relaxed text-slate-600">
+              <div className={`${serviceSideColsLg.body} mt-6 md:mt-0`}>
+                <p className="leading-relaxed text-slate-600">
                   No matter what your industry, appropriate pre-employment screening is essential, particularly for
                   maintaining compliance in sensitive industries like healthcare, finance or legal. We offer a comprehensive
                   range of checks so whatever your sector, you can be confident that your hiring processes are compliant and

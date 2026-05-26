@@ -7,6 +7,8 @@ import {
   ServiceImageCard,
   ServicePageHero,
   ServiceSubsection,
+  serviceSideColsLg,
+  serviceSplitCols,
 } from '../components/ServicePageLayout.jsx'
 
 export default function InternationalInvestigationPage() {
@@ -19,12 +21,18 @@ export default function InternationalInvestigationPage() {
 
       <main id="main">
         <ServiceContentSection>
-          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div>
-              <h2 className="service-section-title">
-                International Investigation Services For Personal &amp; Business Clients
-              </h2>
-              <p className="mt-6 leading-relaxed text-slate-600">
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`service-section-title ${serviceSplitCols.topic}`}>
+              International Investigation Services For Personal &amp; Business Clients
+            </h2>
+            <div className={serviceSplitCols.image}>
+              <ServiceImageCard
+                src="/International-Investigation-Services.jpg"
+                alt="Airplane flying between international city skyscrapers"
+              />
+            </div>
+            <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
+              <p className="leading-relaxed text-slate-600">
                 International investigation services can be required for any number of reasons. Whether you are seeking
                 to resolve personal or family issues, or working on behalf of a multinational corporation, you need a
                 reliable, trustworthy team. Call {SITE_PHONE} now.
@@ -53,25 +61,24 @@ export default function InternationalInvestigationPage() {
                 </p>
               </ServiceSubsection>
             </div>
-
-            <ServiceImageCard
-              src="/private-investigation2.jpg"
-              alt="Professional working on a laptop with a globe in the background"
-            />
           </div>
         </ServiceContentSection>
 
         <ServiceContentSection variant="muted">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-              <div className="lg:col-span-5 lg:sticky lg:top-28">
-                <ServiceImageCard
-                  src="/phone-chat-1.jpg"
-                  alt="Hands using a smartphone outdoors"
-                />
+            <div className="grid items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
+              <h2 className={`service-section-title ${serviceSideColsLg.topic}`}>
+                International private investigations
+              </h2>
+              <div className={serviceSideColsLg.image}>
+                <div className="lg:sticky lg:top-28">
+                  <ServiceImageCard
+                    src="/phone-chat-1.jpg"
+                    alt="Hands using a smartphone outdoors"
+                  />
+                </div>
               </div>
-
-              <div className="lg:col-span-7">
+              <div className={`${serviceSideColsLg.body} mt-6 space-y-4 md:mt-0`}>
                 <ServiceSubsection title="No Sub-contracting on International Investigations">
                   <p>
                     Our team of vetted, highly skilled and experienced detectives conduct all of our investigations

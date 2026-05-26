@@ -7,6 +7,8 @@ import {
   ServiceImageCard,
   ServicePageHero,
   ServiceTimelineList,
+  serviceSideColsMd,
+  serviceSplitCols,
 } from '../components/ServicePageLayout.jsx'
 
 const forensicServices = [
@@ -73,73 +75,78 @@ export default function ForensicAccountingPage() {
 
       <main id="main">
         <ServiceContentSection>
-          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div>
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`service-section-title ${serviceSplitCols.topic}`}>
+              How our fraud and forensic accounting services can help you
+            </h2>
+            <div className={serviceSplitCols.image}>
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/Forensic-Accounting.jpg"
+                  alt="Forensic accounting and financial investigation"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
+            </div>
+            <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
               <p className="leading-relaxed text-slate-600">
                 Whether it&apos;s as a preventative measure or because the worst-case scenario has played out, our forensic
                 accounting team can get to the bottom of it – and make sure it doesn&apos;t happen again.
               </p>
-              <p className="mt-4 leading-relaxed text-slate-600">
+              <p className="leading-relaxed text-slate-600">
                 We have an enviable mix of forensic accountants, retired police detectives, and forensic scientists who
                 specialise in investigating key areas of corporate fraud and financial investigations – issues such as
                 internal audits, IT audits, tax fraud, VAT fraud, and insolvency.
               </p>
+              <div className="protection-content-panel">
+                <ServiceTimelineList items={forensicServices} />
+              </div>
             </div>
-
-            <ServiceImageCard
-              src="/Forensic-Accounting.jpg"
-              alt="Forensic accounting and financial investigation"
-            />
           </div>
         </ServiceContentSection>
 
         <ServiceContentSection variant="muted">
-          <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-              <div className="lg:col-span-5 lg:sticky lg:top-28">
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`service-section-title ${serviceSideColsMd.topic}`}>
+              We have depth of knowledge and experience in counter-fraud
+            </h2>
+            <div className={serviceSideColsMd.image}>
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
                 <ServiceImageCard
                   src="/counter-fraud.jpg"
                   alt="Counter-fraud investigation and financial analysis"
+                  tall
+                  className="min-h-0 flex-1"
                 />
               </div>
-
-              <div className="lg:col-span-7">
-                <h2 className="service-section-title">How our fraud and forensic accounting services can help you</h2>
-                <div className="protection-content-panel mt-8">
-                  <ServiceTimelineList items={forensicServices} />
-                </div>
-              </div>
+            </div>
+            <div className={`${serviceSideColsMd.body} mt-6 space-y-4 md:mt-0`}>
+              <p className="text-sm font-semibold uppercase tracking-wider text-brand-navy md:text-base">
+                Our services are:
+              </p>
+              <ServiceBulletList items={serviceQualities} columns={1} />
+              <p className="mt-8 leading-relaxed text-slate-600">
+                Our counter-fraud division allows organisations not only to respond to problems, but also to take a
+                preventative approach. We work with you to develop an anti-fraud culture in your business, creating strong
+                deterrent cultures and preventative systems, and implementing effective detection processes.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate-600">
+                We still do the reactive service, too, and it includes everything that might be needed concerning the
+                conducting of fraud investigations, recovery of losses, and provision of advice concerning legal,
+                disciplinary or regulatory sanctions.
+              </p>
+              <p className="mt-6 font-medium text-brand-navy">
+                <Link to="/contact" className="text-brand-teal underline-offset-4 hover:underline">
+                  Get in touch
+                </Link>
+                , and chat with our experts about your recovery needs.
+              </p>
             </div>
           </div>
         </ServiceContentSection>
 
-        <ServiceContentSection>
-          <div className="mx-auto max-w-3xl px-4 md:px-6">
-            <h2 className="service-section-title">We have depth of knowledge and experience in counter-fraud</h2>
-            <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-brand-navy md:text-base">
-              Our services are:
-            </p>
-            <ServiceBulletList items={serviceQualities} />
-            <p className="mt-8 leading-relaxed text-slate-600">
-              Our counter-fraud division allows organisations not only to respond to problems, but also to take a
-              preventative approach. We work with you to develop an anti-fraud culture in your business, creating strong
-              deterrent cultures and preventative systems, and implementing effective detection processes.
-            </p>
-            <p className="mt-4 leading-relaxed text-slate-600">
-              We still do the reactive service, too, and it includes everything that might be needed concerning the
-              conducting of fraud investigations, recovery of losses, and provision of advice concerning legal, disciplinary
-              or regulatory sanctions.
-            </p>
-            <p className="mt-6 font-medium text-brand-navy">
-              <Link to="/contact" className="text-brand-teal underline-offset-4 hover:underline">
-                Get in touch
-              </Link>
-              , and chat with our experts about your recovery needs.
-            </p>
-          </div>
-        </ServiceContentSection>
-
-        <section className="border-t border-slate-200 bg-slate-50 py-12 md:py-16">
+        <section className="border-t border-slate-200 bg-white py-12 md:py-16">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
             <div className="service-highlight-banner flex flex-col items-start gap-4 rounded-2xl border border-brand-teal/20 bg-gradient-to-br from-brand-navy to-brand-green p-8 text-white md:flex-row md:items-center md:justify-between md:p-10">
               <div>

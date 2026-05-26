@@ -8,6 +8,8 @@ import {
   ServiceImageCard,
   ServicePageHero,
   ServiceSubsection,
+  serviceSideColsLg,
+  serviceSplitCols,
 } from '../components/ServicePageLayout.jsx'
 
 const surveillanceReasons = [
@@ -44,10 +46,18 @@ export default function SurveillanceServicesPage() {
 
       <main id="main">
         <ServiceContentSection>
-          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div>
-              <h2 className="service-section-title">Covert Surveillance Services</h2>
-              <p className="mt-6 leading-relaxed text-slate-600">
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`service-section-title ${serviceSplitCols.topic}`}>Covert Surveillance Services</h2>
+            <div className={serviceSplitCols.image}>
+              <ServiceImageCard
+                src="/Covert-surveillance.jpg"
+                alt="Surveillance operative holding a professional camera on a gimbal"
+                tall
+                className="min-h-0 flex-1 md:sticky md:top-28"
+              />
+            </div>
+            <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
+              <p className="leading-relaxed text-slate-600">
                 Covert Surveillance is considered to be among the best ways of identifying actual facts. This process
                 offers video and photographic evidence and leaves hardly any room for doubt when investigating a case.
               </p>
@@ -55,7 +65,7 @@ export default function SurveillanceServicesPage() {
                 There are various reasons for which you might require surveillance services. Some of them include the
                 following:
               </p>
-              <ServiceBulletList items={surveillanceReasons} />
+              <ServiceBulletList items={surveillanceReasons} columns={1} />
               <p className="mt-6 leading-relaxed text-slate-600">
                 To discuss our services please call {SITE_PHONE}
               </p>
@@ -87,27 +97,23 @@ export default function SurveillanceServicesPage() {
                 </p>
               </ServiceSubsection>
             </div>
-
-            <ServiceImageCard
-              src="/Covert-surveillance.jpg"
-              alt="Surveillance operative holding a professional camera on a gimbal"
-            />
           </div>
         </ServiceContentSection>
 
         <ServiceContentSection variant="muted">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-              <div className="lg:col-span-5 lg:sticky lg:top-28">
-                <ServiceImageCard
-                  src="/Professional-Surveillance-1.jpg"
-                  alt="Hands cutting printed evidence on a desk during an investigation"
-                />
+            <div className="grid items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
+              <h2 className={`service-section-title ${serviceSideColsLg.topic}`}>Private Investigation Surveillance</h2>
+              <div className={serviceSideColsLg.image}>
+                <div className="lg:sticky lg:top-28">
+                  <ServiceImageCard
+                    src="/Professional-Surveillance-1.jpg"
+                    alt="Hands cutting printed evidence on a desk during an investigation"
+                  />
+                </div>
               </div>
-
-              <div className="lg:col-span-7">
-                <h2 className="service-section-title">Private Investigation Surveillance</h2>
-                <p className="mt-6 leading-relaxed text-slate-600">
+              <div className={`${serviceSideColsLg.body} mt-6 md:mt-0`}>
+                <p className="leading-relaxed text-slate-600">
                   Our investigations are geared to gather the evidence for our customers. Our private clients receive the
                   same levels of service as our commercial clients, offering sound advice with confidentiality assured. All
                   information obtained during the course of an investigation can be used in court if required, as our

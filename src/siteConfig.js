@@ -37,7 +37,7 @@ export const routeHeroImages = {
   '/services/marital-affair-investigation': '/Marital-Affair-Investigation.jpg',
   '/services/asset-and-vehicle-tracking': '/Asset-and-Vehicle-Tracking.jpg',
   '/services/corporate-investigations': '/Corporate-investigations-services.jpg',
-  '/services/international-investigation': '/private-investigation2.jpg',
+  '/services/international-investigation': '/International-Investigation-Services.jpg',
   '/services/surveillance': '/Covert-surveillance.jpg',
   '/services/close-protection': '/Close-Protection-Services-1.jpg',
   '/cyber-security': '/experts-in-cyber-security-UK.jpg',

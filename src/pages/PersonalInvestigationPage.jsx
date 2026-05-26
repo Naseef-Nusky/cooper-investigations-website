@@ -8,31 +8,33 @@ import {
   ServiceImageCard,
   ServicePageHero,
   ServiceTimelineList,
+  serviceSideColsLg,
+  serviceSplitCols,
 } from '../components/ServicePageLayout.jsx'
 
 const investigatorCapabilities = [
   { id: 'records', text: 'Access all public records (including some criminal records and court documents)' },
   { id: 'background', text: 'Perform background checks and historical checks' },
-  { id: 'social', text: 'Investigate social media and internet inquiries' },
+  { id: 'social', text: 'Investigate social media and internet enquiries' },
 ]
 
 const surveillanceTypes = [
   {
     title: 'Static Surveillance',
     paragraphs: [
-      'Normally undertaken by one Agent who will observe and record activity from a fixed position, maintaining cover and continuity for the duration required. This method is ideal when behaviour at a specific address or location needs to be documented discreetly.',
+      'Normally undertaken by one Agent. They can be carefully positioned outside a property and will be employed to film and record the movements of a person, or persons at an address or location.',
     ],
   },
   {
     title: 'Mobile Surveillance',
     paragraphs: [
-      'This is when we are asked to follow a person or persons, documenting movements, associations, and patterns of behaviour using trained surveillance operatives, equipped vehicles, and lawful techniques throughout urban and suburban environments.',
+      'This is when we are asked to follow a person/persons. It is normally undertaken by a team, whether that be two, three, four or more. We have the capabilities of using a variety of vehicles applicable to the job as well as all the latest technology and equipment to capture the required evidence for our client.',
     ],
   },
   {
     title: 'Field Surveillance',
     paragraphs: [
-      'Far less common but still required when we are asked to monitor a scenario whilst in a rural area or open terrain, where static posts and mobile follows are adapted to the landscape, visibility, and operational requirements of the enquiry.',
+      'Far less common but still required when we are asked to monitor a scenario whilst in a rural area.',
     ],
   },
 ]
@@ -44,48 +46,52 @@ export default function PersonalInvestigationPage() {
 
       <main id="main">
         <ServiceContentSection>
-          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div>
-              <h2 className="service-section-title">What is a Private Investigator Allowed to Do?</h2>
-              <p className="mt-6 leading-relaxed text-slate-600">
-                In the United Kingdom, private investigators must operate within the law at all times. They are not
-                exempt from legislation covering privacy, harassment, or data protection, and cannot obtain evidence
-                through illegal means such as trespass, hacking, or intercepting private communications without lawful
-                authority.
-              </p>
-              <p className="mt-4 leading-relaxed text-slate-600">
-                Cooper Investigations conducts personal enquiries using ethical, proportionate methods. Our investigators
-                gather intelligence from lawful sources and present findings you can rely on — whether for matrimonial,
-                family, or individual matters requiring discretion and clarity.
-              </p>
-              <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-brand-navy md:text-base">
-                Lawful capabilities include:
-              </p>
-              <ServiceBulletList items={investigatorCapabilities} />
-            </div>
+          <div className="mx-auto max-w-6xl px-4 md:px-6">
+            <p className="leading-relaxed text-slate-600">
+              When it comes to what exactly a private investigator can legally do in the UK, the law is pretty clear.
+            </p>
+            <p className="mt-4 leading-relaxed text-slate-600">
+              Which is why here at Cooper Investigations, we pride ourselves in being a very honest and reputable
+              London-based detective agency that ensures only legal methods are carried out on all investigations.
+              Private investigators are not only required for clients with personal difficulties but also for business
+              matters, large or small.
+            </p>
 
-            <ServiceGraphicCard
-              src="/Personal-Investigation-Services.png"
-              alt="Magnifying glass over fingerprint pattern"
-            />
+            <div className="mt-12 grid items-start gap-12 md:grid-cols-2 md:items-stretch md:gap-16">
+              <h2 className={`service-section-title ${serviceSplitCols.topic}`}>
+                What is a Private Investigator Allowed to Do?
+              </h2>
+              <div className={serviceSplitCols.image}>
+                <ServiceGraphicCard
+                  src="/Personal-Investigation-Services.png"
+                  alt="Magnifying glass over fingerprint pattern"
+                />
+              </div>
+              <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
+                <p className="font-semibold text-brand-navy">Private Investigators can legally:</p>
+                <ServiceBulletList items={investigatorCapabilities} columns={1} />
+                <p className="mt-6 leading-relaxed text-slate-600">
+                  Private investigators can gain valuable information in the way they evaluate intelligence gleaned
+                  legally, which can only be beneficial to our instructing clients.
+                </p>
+              </div>
+            </div>
           </div>
         </ServiceContentSection>
 
         <ServiceContentSection variant="muted">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-              <div className="lg:col-span-5 lg:sticky lg:top-28">
-                <ServiceImageCard src="/Legal-Surveillance.jpg" alt="Security camera mounted on a building wall" />
+            <div className="grid items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
+              <h2 className={`service-section-title ${serviceSideColsLg.topic}`}>
+                Different Types of Legal Surveillance Operations:
+              </h2>
+              <div className={serviceSideColsLg.image}>
+                <div className="lg:sticky lg:top-28">
+                  <ServiceImageCard src="/Legal-Surveillance.jpg" alt="Security camera mounted on a building wall" />
+                </div>
               </div>
-
-              <div className="lg:col-span-7">
-                <h2 className="service-section-title">Different Types of Legal Surveillance Operations</h2>
-                <p className="mt-6 leading-relaxed text-slate-600">
-                  All surveillance carried out by Cooper Investigations is planned, documented, and conducted in
-                  compliance with UK law. The approach we recommend depends on your objectives, the environment, and the
-                  level of cover required.
-                </p>
-                <div className="protection-content-panel mt-8">
+              <div className={`${serviceSideColsLg.body} mt-6 md:mt-0`}>
+                <div className="protection-content-panel mt-8 md:mt-8">
                   <ServiceTimelineList items={surveillanceTypes} />
                 </div>
               </div>

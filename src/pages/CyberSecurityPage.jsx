@@ -4,21 +4,24 @@ import {
   ConsultationCta,
   ServiceBulletList,
   ServiceContentSection,
-  ServiceFeatureGrid,
   ServiceImageCard,
   ServicePageHero,
+  splitColumnClasses,
 } from '../components/ServicePageLayout.jsx'
 
 const mobileRecoverable = [
-  'SMS | IM Chat | WhatsApp | Viber | Skype | Wechat | IRC | Deleted',
-  'Call history | Incoming | Outgoing | Missed | Deleted',
-  'EMAILs | Incoming | Outgoing | Drafts | Deleted',
-  'GPS locations | Waypoints | GEO tagging of pictures',
-  'Photos | Sent | Received | Deleted',
-  'Social Network logs | Activity Time | GEO Login | Deleted',
-  'Internet History | History | Entered Keywords | Searches | Deleted | Cookies',
-  'Wifi Data | SSID | MAC | I.P',
-  'Bluetooth | Paired devices | Timestamp',
+  { id: 'sms', text: 'SMS | IM Chat | WhatsApp | Viber | Skype | Wechat | IRC | Deleted' },
+  { id: 'calls', text: 'Call history | Incoming | Outgoing | Missed | Deleted' },
+  { id: 'email', text: 'EMAILs | Incoming | Outgoing | Drafts | Deleted' },
+  { id: 'gps', text: 'GPS locations | Waypoints | GEO tagging of pictures' },
+  { id: 'photos', text: 'Photos | Sent | Received | Deleted' },
+  { id: 'social', text: 'Social Network logs | Activity Time | GEO Login | Deleted' },
+  {
+    id: 'internet',
+    text: 'Internet History | History | Entered Keywords | Searches | Deleted | Cookies',
+  },
+  { id: 'wifi', text: 'Wifi Data | SSID | MAC | I.P' },
+  { id: 'bluetooth', text: 'Bluetooth | Paired devices | Timestamp' },
 ]
 
 const droneRecoverable = [
@@ -38,35 +41,23 @@ const droneRecoverable = [
 ]
 
 function ForensicsSplit({ title, image, alt, imageFirst = false, variant = 'default', children }) {
-  const imageCol = (
-    <div className={imageFirst ? 'lg:sticky lg:top-28' : ''}>
-      <ServiceImageCard src={image} alt={alt} />
-    </div>
-  )
-  const textCol = (
-    <div>
-      {title ? <h2 className="service-section-title">{title}</h2> : null}
-      <div className={title ? 'mt-6 space-y-4 text-sm leading-relaxed text-slate-600 md:text-base' : 'space-y-4 text-sm leading-relaxed text-slate-600 md:text-base'}>
-        {children}
-      </div>
-    </div>
-  )
+  const columns = splitColumnClasses({ imageFirst, wide: true })
 
   return (
     <ServiceContentSection variant={variant}>
       <div className="mx-auto max-w-6xl px-4 md:px-6">
-        <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-          {imageFirst ? (
-            <>
-              <div className="lg:col-span-5">{imageCol}</div>
-              <div className="lg:col-span-7">{textCol}</div>
-            </>
-          ) : (
-            <>
-              <div className="lg:col-span-7">{textCol}</div>
-              <div className="lg:col-span-5">{imageCol}</div>
-            </>
-          )}
+        <div className="grid items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
+          {title ? <h2 className={`service-section-title ${columns.topic}`}>{title}</h2> : null}
+          <div className={columns.image}>
+            <div className="flex h-full min-h-0 flex-col lg:sticky lg:top-28">
+              <ServiceImageCard src={image} alt={alt} tall className="min-h-0 flex-1" />
+            </div>
+          </div>
+          <div
+            className={`${columns.body} ${title ? 'mt-6 space-y-4 text-sm leading-relaxed text-slate-600 md:mt-0 md:text-base' : 'space-y-4 text-sm leading-relaxed text-slate-600 md:text-base'}`}
+          >
+            {children}
+          </div>
         </div>
       </div>
     </ServiceContentSection>
@@ -101,29 +92,23 @@ export default function CyberSecurityPage() {
             disputes) but may also be concerned with contractual disputes between commercial entities where a form of
             digital forensics referred to as electronic discovery (ediscovery) may be involved.
           </p>
+          <p>
+            Cooper Investigations team has a combined 40 years of expertise in Digital Forensics &amp; Security. Our team
+            has advanced skills in Data Recovery such as Computer Forensics, Mobile Phone Forensics, eDiscovery, Internet
+            Monitoring, penetration testing, IR Team and Red teams. Our headquartered in London provides extensive
+            expertise in Digital Forensics, Cyber Security and Cyber Crime, such experience is gained by global
+            investigation on real-life cyber attacks.
+          </p>
+          <p>
+            We conduct research for OEMs and government agencies. Cooper Investigations offices are equipped with state of
+            the art forensic technology and workshops for research. Our partners have offices in major cities across the
+            world, enabling us to offer our services globally.
+          </p>
         </ForensicsSplit>
 
         <ForensicsSplit
           imageFirst
           variant="muted"
-          image="/experts-in-cyber-security-UK.jpg"
-          alt="Cyber security experts in the UK"
-        >
-          <p>
-            Cooper Investigations team has a combined 40 years of expertise in Digital Forensics &amp; Security. Our
-            team has advanced skills in Data Recovery such as Computer Forensics, Mobile Phone Forensics, eDiscovery,
-            Internet Monitoring, penetration testing, IR Team and Red teams. Our headquartered in London provides
-            extensive expertise in Digital Forensics, Cyber Security and Cyber Crime, such experience is gained by global
-            investigation on real-life cyber attacks.
-          </p>
-          <p>
-            We conduct research for OEMs and government agencies. Cooper Investigations offices are equipped with state
-            of the art forensic technology and workshops for research. Our partners have offices in major cities across
-            the world, enabling us to offer our services globally.
-          </p>
-        </ForensicsSplit>
-
-        <ForensicsSplit
           title="Mobile Phone Forensic Investigation"
           image="/Mobile-Phone-Forensic-Investigation.jpg"
           alt="Mobile phone forensic investigation"
@@ -133,12 +118,10 @@ export default function CyberSecurityPage() {
             technology allows us to carry out forensic acquisition of data from the supported listed devices.
           </p>
           <p className="font-semibold text-brand-navy">What Data is Recoverable?</p>
-          <ServiceFeatureGrid features={mobileRecoverable} />
+          <ServiceBulletList items={mobileRecoverable} columns={1} />
         </ForensicsSplit>
 
         <ForensicsSplit
-          imageFirst
-          variant="muted"
           title="Forensic Examination of Computers"
           image="/data-protection.jpg"
           alt="Computer forensic examination and data analysis"
@@ -165,6 +148,8 @@ export default function CyberSecurityPage() {
         </ForensicsSplit>
 
         <ForensicsSplit
+          imageFirst
+          variant="muted"
           title="Email Forensics"
           image="/Email-Fraud-Investigation-1.jpg"
           alt="Email fraud and forensics investigation"
@@ -196,16 +181,8 @@ export default function CyberSecurityPage() {
             as the company name or with a very slight change such as an extra letter. It is common the bank account to be
             in the same city as the victim or client.
           </p>
-        </ForensicsSplit>
-
-        <ForensicsSplit
-          imageFirst
-          variant="muted"
-          title="Email Fraud Investigation"
-          image="/Email-Fraud-Investigation-1.jpg"
-          alt="Cyber fraud investigation team"
-        >
-          <p>
+          <h3 className="mt-8 text-lg font-bold text-brand-navy">Email Fraud Investigation</h3>
+          <p className="mt-4">
             Cooper Investigations Cyber and Fraud Team are certified fraud and forensic examiners and can deploy to assist
             with all cases related to email fraud, email spear phishing attacks, email scams and on-line related fraud.
             Cooper Investigations can deploy forensic examiners to investigate hacking, determine how it took place and
@@ -242,10 +219,14 @@ export default function CyberSecurityPage() {
             Cooper Investigations expert forensic technology to carry out forensic acquisition of data from the supported
             drones.
           </p>
-          <ServiceBulletList items={droneRecoverable} />
+          <ServiceBulletList items={droneRecoverable} columns={1} />
         </ForensicsSplit>
 
-        <ForensicsSplit title="WiFi Forensics" image="/cyber-security.jpg" alt="WiFi and cyber security forensics">
+        <ForensicsSplit
+          title="WiFi Forensics"
+          image="/WiFi-Network-Monitoring.jpg"
+          alt="WiFi forensics and network monitoring security services"
+        >
           <p>
             Cooper Investigations Cyber Crime Team specialise in wireless network analysis, we offer RF site surveying, WiFi
             network scan and analysis, Secured wireless network installation and Wi-Fi security services for private and
@@ -267,16 +248,8 @@ export default function CyberSecurityPage() {
             remote control, hijacked routers, modified firmware, many connected un-authorised devices and active
             interception. The probe can be deployed as a fixed install to sites to detect Wi-Fi interference within 900ms.
           </p>
-        </ForensicsSplit>
-
-        <ForensicsSplit
-          imageFirst
-          variant="muted"
-          title="WiFi Network Monitoring"
-          image="/cyber-security.jpg"
-          alt="WiFi network monitoring and security audit"
-        >
-          <p>
+          <h3 className="mt-8 text-lg font-bold text-brand-navy">WiFi Network Monitoring</h3>
+          <p className="mt-4">
             Are you concerned about information loss or business secrets being targeted over WiFi? A small amount of
             information could be worth millions to the right people or could damage important negotiations. Loss of
             confidential information such as theft of data, hacking incidents, leaks and executive schedules could even
@@ -292,16 +265,24 @@ export default function CyberSecurityPage() {
 
         <section className="border-t border-slate-200 bg-white py-12 md:py-16">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <div className="service-highlight-banner flex flex-col items-start gap-4 rounded-2xl border border-brand-teal/20 bg-gradient-to-br from-brand-navy to-brand-green p-8 text-white md:flex-row md:items-center md:justify-between md:p-10">
-              <div>
-                <h3 className="text-xl font-bold md:text-2xl">Digital forensics &amp; cyber security</h3>
-                <p className="mt-2 max-w-xl text-sm text-white/85 md:text-base">
-                  Speak to our team in complete confidence about mobile, computer, email, and network forensics.
-                </p>
+            <div className="service-highlight-banner service-highlight-banner--photo rounded-2xl text-white">
+              <div
+                className="service-highlight-banner-photo"
+                style={{ backgroundImage: "url('/Digital-forensics-investigations.jpg')" }}
+                aria-hidden
+              />
+              <div className="service-highlight-banner-overlay" aria-hidden />
+              <div className="service-highlight-banner-inner">
+                <div>
+                  <h3 className="text-xl font-bold md:text-2xl">Digital forensics &amp; cyber security</h3>
+                  <p className="mt-2 max-w-xl text-sm text-white/85 md:text-base">
+                    Speak to our team in complete confidence about mobile, computer, email, and network forensics.
+                  </p>
+                </div>
+                <Link to="/contact" className="service-highlight-btn shrink-0">
+                  Contact us
+                </Link>
               </div>
-              <Link to="/contact" className="service-highlight-btn shrink-0">
-                Contact us
-              </Link>
             </div>
           </div>
         </section>

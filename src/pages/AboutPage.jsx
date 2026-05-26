@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom'
 import { PageShell } from '../components/SiteChrome.jsx'
-import { ServicePageHero } from '../components/ServicePageLayout.jsx'
+import {
+  ServiceImageCard,
+  ServicePageHero,
+  serviceSideColsMd,
+  serviceSplitCols,
+} from '../components/ServicePageLayout.jsx'
 import { SITE_PHONE, SITE_PHONE_HREF } from '../siteConfig.js'
 
 function IconSearchBullet({ className = 'h-5 w-5 shrink-0 text-brand-teal' }) {
@@ -13,9 +18,9 @@ function IconSearchBullet({ className = 'h-5 w-5 shrink-0 text-brand-teal' }) {
 
 function AboutBulletList({ items }) {
   return (
-    <ul className="mt-6 space-y-3">
-      {items.map((item) => (
-        <li key={item} className="flex gap-3 text-sm leading-relaxed text-slate-600 md:text-base">
+    <ul className="service-bullet-list mt-6 space-y-3">
+      {items.map((item, index) => (
+        <li key={typeof item === 'string' ? item : index} className="service-bullet flex gap-3 text-sm leading-relaxed text-slate-600 md:text-base">
           <IconSearchBullet />
           <span>{item}</span>
         </li>
@@ -25,20 +30,32 @@ function AboutBulletList({ items }) {
 }
 
 const aboutPoints = [
-  'A dedicated team of professionals who understand the sensitivity of your situation.',
-  'Bespoke investigations tailored to your objectives — no generic templates.',
-  'A relentless focus on results, with clear reporting at every stage.',
-  'Absolute discretion and confidentiality throughout your case.',
-  'Fact-finding grounded in evidence, proportionate methods, and sound judgment.',
-  'Work conducted to the highest legal and ethical standards.',
+  'We have an extremely dedicated and efficient support group/team.',
+  'Each bespoke case is carried out with maximum professionalism and discretion.',
+  'We pride ourselves on achieving results and go out of our way to do so.',
+  'We are discreet and confidential.',
+  'Let us help find the facts and evidence, then the solution to your problem.',
+  'Each case is bespoke and treated with extreme discretion! We pride ourselves on gathering information and evidence according to the strictest legal and ethical standards.',
+  'Our high success rate is due to gathering information in the correct manner and by putting the client’s needs first.',
   <strong key="priority">You&apos;re our priority!</strong>,
 ]
 
 const whyPoints = [
-  <span key="exp"><strong>40 years combined experience</strong> across investigations, forensics, and security.</span>,
-  <span key="247"><strong>Personal 24/7 service</strong> when timelines matter most.</span>,
-  <span key="staff"><strong>Expert personnel</strong> — we do not subcontract your case to third parties.</span>,
-  <span key="disc"><strong>Discrete &amp; confidential</strong> handling from first contact to final report.</span>,
+  <span key="exp">
+    <strong>40 years combined experience</strong> – Our team of private investigators and agents have over 40 years
+    combined experience.
+  </span>,
+  <span key="247">
+    <strong>Personal 24/7 Service</strong> – We provide a dedicated, out of hours service for urgent and/or overseas
+    matters, to all clients.
+  </span>,
+  <span key="staff">
+    <strong>Expert Personnel</strong> – We have a policy of not subcontracting, instead preferring to keep tasks within
+    our group of trusted personnel.
+  </span>,
+  <span key="disc">
+    <strong>Discrete &amp; Confidential</strong> – Discretion and confidentiality are at the core of everything we do.
+  </span>,
 ]
 
 export default function AboutPage() {
@@ -52,53 +69,58 @@ export default function AboutPage() {
 
       <main id="main">
         <section className="py-16 md:py-24">
-          <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div>
-              <h2 className="about-section-title">About us</h2>
-              <p className="mt-6 leading-relaxed text-slate-600">
-                Cooper Investigations provides a bespoke, confidential service available 24 hours a day, 7 days a week.
-                Our multi-disciplined team brings more than 40 years of combined experience from backgrounds including
-                Ex-Military, Special Forces, police, and corporate investigations — united by a commitment to clarity,
-                discretion, and results.
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`about-section-title ${serviceSplitCols.topic}`}>About us</h2>
+            <div className={serviceSplitCols.image}>
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/private-investigation-agency-1.jpg"
+                  alt="Private investigation agency professional at work"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
+            </div>
+            <div className={`${serviceSplitCols.body} mt-6 md:mt-0`}>
+              <p className="leading-relaxed text-slate-600">
+                A bespoke and 24/7 confidential service with a flexible and adaptable to whatever the necessary situation
+                and brief! A private investigating service with over 40 years combined experience and we have a
+                multi-disciplined team (Ex-Military, Special force&apos;s, civil and criminal investigations).
               </p>
               <AboutBulletList items={aboutPoints} />
-            </div>
-            <div className="overflow-hidden rounded-2xl shadow-xl">
-              <img
-                src="/private-investigation-agency-1.jpg"
-                alt="Private investigation agency professional at work"
-                className="aspect-[4/3] w-full object-cover"
-                width={800}
-                height={600}
-              />
             </div>
           </div>
         </section>
 
         <section className="border-t border-slate-200 bg-slate-50 py-16 md:py-24">
-          <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div className="order-2 overflow-hidden rounded-2xl shadow-xl md:order-1">
-              <img
-                src="/private-investigation2.jpg"
-                alt="Private investigator conducting confidential work"
-                className="aspect-[4/3] w-full object-cover"
-                width={800}
-                height={600}
-              />
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`about-section-title ${serviceSideColsMd.topic}`}>Why use Cooper Investigations?</h2>
+            <div className={serviceSideColsMd.image}>
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/private-investigation2.jpg"
+                  alt="Private investigator conducting confidential work"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
             </div>
-            <div className="order-1 md:order-2">
-              <h2 className="about-section-title">Why use Cooper Investigations?</h2>
-              <p className="mt-6 leading-relaxed text-slate-600">
-                We are reliable, flexible, and straightforward. When situations are complex, we bring calm leadership,
-                rigorous planning, and the resources to act quickly — in the UK and internationally.
+            <div className={`${serviceSideColsMd.body} mt-6 md:mt-0`}>
+              <p className="leading-relaxed text-slate-600">
+                We are reliable, flexible, diligent, and reassuring. We use the upmost discretion. This is achieved
+                through strong management. The ability to meet and exceed client&apos;s expectations as well as respond to
+                the changing needs of the client or his/her situation, this is achieved through being honest and acting
+                on the facts with integrity and transparency.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Our management team has handled challenging cases across jurisdictions. We take a{' '}
-                <strong>no-nonsense approach</strong>: clear scope, honest advice, and evidence you can rely on.
+                We have dealt with challenging individuals and cases and are more than capable and experienced in the
+                most demanding and complex case with positive results, we are also experienced in all civil, criminal
+                and domestic cases! As well as corporate.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
-                Whether you need surveillance, digital forensics, or corporate investigations, you work with one
-                accountable team that respects confidentiality and the law.
+                We also have an international investigation team that we work with if subjects abscond. We have a NO
+                NONSENSE approach with a dedicated and ambitious team of experts who will work tirelessly to achieve
+                results.
               </p>
               <AboutBulletList items={whyPoints} />
             </div>

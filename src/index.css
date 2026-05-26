@@ -996,12 +996,55 @@ body {
   padding: 0.35rem 0;
 }
 
-@media (min-width: 768px) {
-  .marital-signs-panel ul {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 1.5rem;
-    row-gap: 0.25rem;
+.service-bullet-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.service-highlight-banner--photo {
+  position: relative;
+  overflow: hidden;
+  min-height: 12rem;
+  padding: 0;
+  background: transparent;
+  border-color: rgba(45, 212, 191, 0.35);
+}
+
+.service-highlight-banner-photo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.service-highlight-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(17, 34, 51, 0.55) 0%,
+    rgba(27, 48, 34, 0.48) 55%,
+    rgba(17, 34, 51, 0.52) 100%
+  );
+}
+
+.service-highlight-banner-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+@media (width >= 48rem) {
+  .service-highlight-banner-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem;
   }
 }
 
@@ -1233,6 +1276,25 @@ body {
   );
 }
 
+.home-contact-section-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/phone-chat-1.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.home-contact-section-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(17, 34, 51, 0.45) 0%,
+    rgba(30, 41, 59, 0.5) 50%,
+    rgba(17, 34, 51, 0.48) 100%
+  );
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -1360,43 +1422,6 @@ body {
 .hero-progress-paused {
   animation-play-state: paused;
 }
-
-/* Hero testimonials panel */
-.hero-testimonial-shell {
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-}
-
-.hero-testimonial-quote {
-  transition:
-    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes hero-testimonial-progress {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-.hero-testimonial-progress {
-  animation: hero-testimonial-progress 6s linear forwards;
-}
-
-.hero-testimonial-progress-paused {
-  animation-play-state: paused;
-}
-
-@media (max-width: 1023px) {
-  .hero-testimonials {
-    margin-inline: auto;
-  }
-}
-
 
 .hero-content-enter {
   animation: hero-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;

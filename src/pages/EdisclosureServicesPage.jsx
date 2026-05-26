@@ -6,6 +6,7 @@ import {
   ServiceContentSection,
   ServiceImageCard,
   ServicePageHero,
+  serviceSplitCols,
 } from '../components/ServicePageLayout.jsx'
 
 const disclosureSources = [
@@ -36,8 +37,19 @@ export default function EdisclosureServicesPage() {
 
       <main id="main">
         <ServiceContentSection>
-          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div>
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`service-section-title ${serviceSplitCols.topic}`}>Edisclosure Services</h2>
+            <div className={serviceSplitCols.image}>
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/Edisclosure-Services.jpg"
+                  alt="Smartphone and charging cable on a desk for e-disclosure collection"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
+            </div>
+            <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
               <p className="leading-relaxed text-slate-600">
                 You may be required to follow full disclosure procedures where you will have to declare whether or not an
                 electronic document exists or has existed. If you are prepared to let your opponent see this personal
@@ -59,11 +71,6 @@ export default function EdisclosureServicesPage() {
               </p>
               <ServiceBulletList items={disclosureSources} />
             </div>
-
-            <ServiceImageCard
-              src="/Edisclosure-Services.jpg"
-              alt="Smartphone and charging cable on a desk for e-disclosure collection"
-            />
           </div>
         </ServiceContentSection>
 

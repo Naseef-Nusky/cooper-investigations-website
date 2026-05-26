@@ -6,6 +6,7 @@ import {
   ServiceImageCard,
   ServicePageHero,
   ServiceTimelineList,
+  serviceSplitCols,
 } from '../components/ServicePageLayout.jsx'
 
 const incidentServices = [
@@ -34,10 +35,20 @@ export default function CorporateIncidentResponsePage() {
 
       <main id="main">
         <ServiceContentSection>
-          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div>
-              <h2 className="service-section-title">Corporate Incident Response</h2>
-              <p className="mt-6 leading-relaxed text-slate-600">
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`service-section-title ${serviceSplitCols.topic}`}>Corporate Incident Response</h2>
+            <div className={serviceSplitCols.image}>
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/Corporate-Incident-Response.jpg"
+                  alt="Professional reviewing incident response documentation at a desk"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
+            </div>
+            <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
+              <p className="leading-relaxed text-slate-600">
                 Cooper Investigations manage incidents of all types, complexity and severity for organizations across
                 diverse industries. You can count on Cooper Investigations unique frontline experience not only in a
                 crisis, but also for proactive planning and mitigation strategies. We are among the top service providers
@@ -67,11 +78,6 @@ export default function CorporateIncidentResponsePage() {
                 <ServiceTimelineList items={incidentServices} />
               </div>
             </div>
-
-            <ServiceImageCard
-              src="/Corporate-Incident-Response.jpg"
-              alt="Professional reviewing incident response documentation at a desk"
-            />
           </div>
         </ServiceContentSection>
 

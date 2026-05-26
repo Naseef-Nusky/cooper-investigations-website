@@ -6,6 +6,8 @@ import {
   ServiceImageCard,
   ServicePageHero,
   ServiceTimelineList,
+  serviceSideColsLg,
+  serviceSplitCols,
 } from '../components/ServicePageLayout.jsx'
 
 const corporateServices = [
@@ -69,10 +71,16 @@ export default function CorporateInvestigationsPage() {
 
       <main id="main">
         <ServiceContentSection>
-          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div>
-              <h2 className="service-section-title">Corporate Investigations</h2>
-              <p className="mt-6 leading-relaxed text-slate-600">
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`service-section-title ${serviceSplitCols.topic}`}>Corporate Investigations</h2>
+            <div className={serviceSplitCols.image}>
+              <ServiceImageCard
+                src="/Corporate-investigations-services.jpg"
+                alt="Keyboard with a small caution cone on the keys"
+              />
+            </div>
+            <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
+              <p className="leading-relaxed text-slate-600">
                 A large majority of the daily work we do is for various companies. We have successfully conducted
                 investigations across the UK for small businesses and larger companies. Our specialist team is available
                 24/7 to ensure that we meet your requirements.
@@ -87,27 +95,23 @@ export default function CorporateInvestigationsPage() {
                 guarantee confidentiality.
               </p>
             </div>
-
-            <ServiceImageCard
-              src="/Corporate-investigations-services.jpg"
-              alt="Keyboard with a small caution cone on the keys"
-            />
           </div>
         </ServiceContentSection>
 
         <ServiceContentSection variant="muted">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-              <div className="lg:col-span-5 lg:sticky lg:top-28">
-                <ServiceImageCard
-                  src="/data-protection.jpg"
-                  alt="Hands typing on a laptop displaying code on the screen"
-                />
+            <div className="grid items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
+              <h2 className={`service-section-title ${serviceSideColsLg.topic}`}>Our Company</h2>
+              <div className={serviceSideColsLg.image}>
+                <div className="lg:sticky lg:top-28">
+                  <ServiceImageCard
+                    src="/data-protection.jpg"
+                    alt="Hands typing on a laptop displaying code on the screen"
+                  />
+                </div>
               </div>
-
-              <div className="lg:col-span-7">
-                <h2 className="service-section-title">Our Company</h2>
-                <p className="mt-6 leading-relaxed text-slate-600">
+              <div className={`${serviceSideColsLg.body} mt-6 md:mt-0`}>
+                <p className="leading-relaxed text-slate-600">
                   Here at Cooper Investigations, we comply with the data protection act within the UK and all our
                   investigators are fully DBS Checked and insured.
                 </p>

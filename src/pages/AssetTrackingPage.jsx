@@ -6,6 +6,8 @@ import {
   ServiceContentSection,
   ServiceImageCard,
   ServicePageHero,
+  serviceSideColsLg,
+  serviceSplitCols,
 } from '../components/ServicePageLayout.jsx'
 
 const useCases = [
@@ -33,10 +35,16 @@ export default function AssetTrackingPage() {
 
       <main id="main">
         <ServiceContentSection>
-          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div>
-              <h2 className="service-section-title">Asset and Vehicle Tracking</h2>
-              <p className="mt-6 leading-relaxed text-slate-600">
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`service-section-title ${serviceSplitCols.topic}`}>Asset and Vehicle Tracking</h2>
+            <div className={serviceSplitCols.image}>
+              <ServiceImageCard
+                src="/Asset-and-Vehicle-Tracking.jpg"
+                alt="Black London taxi on a cobblestone street"
+              />
+            </div>
+            <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
+              <p className="leading-relaxed text-slate-600">
                 Vehicle tracking is a covert method of recording the movements of a vehicle 24 hours a day, 7 days a
                 week, 365 days of the year. The vehicle trackers are deployed covertly by our highly trained operatives
                 in places where they won&apos;t be located by the driver/owner. We won&apos;t need the keys to the vehicle
@@ -45,30 +53,28 @@ export default function AssetTrackingPage() {
               <p className="mt-4 leading-relaxed text-slate-600">
                 There are many reasons why you may want to track the location of a vehicle.
               </p>
-              <ServiceBulletList items={useCases} />
+              <ServiceBulletList items={useCases} columns={1} />
               <p className="mt-6 leading-relaxed text-slate-600">
                 Maybe you just want to confirm that your trust in your partner is justified and wish to check their
                 whereabouts matches where they have stated they&apos;ll be.
               </p>
             </div>
-            <ServiceImageCard
-              src="/Asset-and-Vehicle-Tracking.jpg"
-              alt="Black London taxi on a cobblestone street"
-            />
           </div>
         </ServiceContentSection>
 
         <ServiceContentSection variant="muted">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-              <div className="lg:col-span-5 lg:sticky lg:top-28">
-                <ServiceImageCard
-                  src="/vehicle-tracker.jpg"
-                  alt="Hand holding a smartphone displaying GPS map tracking"
-                />
+            <div className="grid items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
+              <h2 className={`service-section-title ${serviceSideColsLg.topic}`}>Vehicle tracker data</h2>
+              <div className={serviceSideColsLg.image}>
+                <div className="lg:sticky lg:top-28">
+                  <ServiceImageCard
+                    src="/vehicle-tracker.jpg"
+                    alt="Hand holding a smartphone displaying GPS map tracking"
+                  />
+                </div>
               </div>
-
-              <div className="lg:col-span-7">
+              <div className={`${serviceSideColsLg.body} mt-6 space-y-4 md:mt-0`}>
                 <p className="leading-relaxed text-slate-600">
                   Once the car tracker has been removed you will be sent an email containing the downloaded data from
                   the device. This will outline the following information for the duration that it was deployed:

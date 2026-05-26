@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import HeroCarousel from '../HeroCarousel.jsx'
 import { PageShell } from '../components/SiteChrome.jsx'
+import { serviceSplitCols } from '../components/ServicePageLayout.jsx'
 
 const services = [
   {
@@ -9,7 +10,7 @@ const services = [
     title: 'Private Investigations',
     description:
       'Discreet corporate and private investigations tailored to your objectives, delivered by experienced investigators.',
-    href: '/about',
+    href: '/services/personal-investigation',
     icon: 'search',
     accent: 'from-brand-green to-brand-teal',
     iconBg: 'bg-gradient-to-br from-brand-green to-brand-teal',
@@ -38,7 +39,7 @@ const services = [
     title: 'Surveillance Services',
     description:
       'Lawful, professional surveillance capabilities supporting investigations with meticulous planning and documentation.',
-    href: '/about',
+    href: '/services/surveillance',
     icon: 'camera',
     accent: 'from-brand-navy to-brand-teal',
     iconBg: 'bg-gradient-to-br from-brand-navy to-brand-teal',
@@ -386,7 +387,7 @@ export default function HomePage() {
                   {s.description}
                 </p>
 
-                <a href={s.href} className="service-card-link relative mt-8 inline-flex w-fit items-center gap-2">
+                <Link to={s.href} className="service-card-link relative mt-8 inline-flex w-fit items-center gap-2">
                   <span>Read More</span>
                   <svg
                     className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
@@ -398,7 +399,7 @@ export default function HomePage() {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </a>
+                </Link>
               </article>
             ))}
             </div>
@@ -427,23 +428,10 @@ export default function HomePage() {
         {/* About split */}
         <section id="about" className="scroll-mt-24 py-16 md:py-24">
           <div className="mx-auto grid max-w-6xl gap-12 px-4 md:grid-cols-2 md:items-center md:gap-16 md:px-6">
-            <div className="space-y-5">
-              <h2 className="text-3xl font-bold tracking-tight text-brand-navy md:text-4xl">Private Investigations</h2>
-              <p className="leading-relaxed text-slate-600">
-                Cooper Investigations supports clients who need clarity in complex situations. We combine rigorous
-                planning with field experience to deliver evidence-led outcomes while respecting confidentiality and the
-                law.
-              </p>
-              <p className="leading-relaxed text-slate-600">
-                Whether you are safeguarding assets, responding to suspected misconduct, or gathering facts for civil
-                proceedings, our team works with you to define proportionate, ethical strategies.
-              </p>
-              <p className="leading-relaxed text-slate-600">
-                From background enquiries to surveillance and digital evidence, we coordinate specialist skills under a
-                single accountable point of contact.
-              </p>
-            </div>
-            <div className="relative overflow-hidden rounded-lg shadow-xl">
+            <h2 className={`text-3xl font-bold tracking-tight text-brand-navy md:text-4xl ${serviceSplitCols.topic}`}>
+              Private Investigations
+            </h2>
+            <div className={`relative overflow-hidden rounded-lg shadow-xl ${serviceSplitCols.image}`}>
               <img
                 src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80"
                 alt="Professional reviewing confidential documents"
@@ -460,6 +448,21 @@ export default function HomePage() {
                   Discreet and Confidential Professional Services
                 </p>
               </div>
+            </div>
+            <div className={`space-y-5 ${serviceSplitCols.body} mt-6 md:mt-0`}>
+              <p className="leading-relaxed text-slate-600">
+                Cooper Investigations supports clients who need clarity in complex situations. We combine rigorous
+                planning with field experience to deliver evidence-led outcomes while respecting confidentiality and the
+                law.
+              </p>
+              <p className="leading-relaxed text-slate-600">
+                Whether you are safeguarding assets, responding to suspected misconduct, or gathering facts for civil
+                proceedings, our team works with you to define proportionate, ethical strategies.
+              </p>
+              <p className="leading-relaxed text-slate-600">
+                From background enquiries to surveillance and digital evidence, we coordinate specialist skills under a
+                single accountable point of contact.
+              </p>
             </div>
           </div>
         </section>
@@ -492,17 +495,10 @@ export default function HomePage() {
         <LocationsSection />
 
         {/* Contact */}
-        <section
-          id="contact"
-          className="scroll-mt-24 py-16 md:py-24"
-          style={{
-            backgroundImage:
-              "linear-gradient(to bottom right, rgba(17,34,51,0.92), rgba(27,48,34,0.9)), url('https://images.unsplash.com/photo-1556761175-5973da3022a5?auto=format&fit=crop&w=2000&q=80')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="mx-auto max-w-xl px-4 md:px-6">
+        <section id="contact" className="contact-form-section scroll-mt-24">
+          <div className="home-contact-section-bg" aria-hidden />
+          <div className="home-contact-section-overlay" aria-hidden />
+          <div className="relative mx-auto max-w-xl px-4 py-16 md:px-6 md:py-24">
             <div className="text-center text-white">
               <h2 className="text-3xl font-bold md:text-4xl">Contact us</h2>
               <p className="mt-2 text-lg text-white/85">Drop us a message</p>

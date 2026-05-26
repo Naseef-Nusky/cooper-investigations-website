@@ -6,6 +6,7 @@ import {
   ServiceContentSection,
   ServiceImageCard,
   ServicePageHero,
+  serviceSplitCols,
 } from '../components/ServicePageLayout.jsx'
 
 const recoverableDevices = [
@@ -35,8 +36,19 @@ export default function CorporateDataRecoveryPage() {
 
       <main id="main">
         <ServiceContentSection>
-          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:gap-16 md:px-6">
-            <div>
+          <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
+            <h2 className={`service-section-title ${serviceSplitCols.topic}`}>Data Recovery Expertise</h2>
+            <div className={serviceSplitCols.image}>
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/Data-Recovery-Expertise-1.jpg"
+                  alt="Hand holding a USB flash drive in a forensic data recovery setting"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
+            </div>
+            <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
               <p className="leading-relaxed text-slate-600">
                 Cooper Investigations understand how important your data is and the wider commercial implications of data
                 recovery, including the potential cost and disruption to a business. Since we started, we have operated a
@@ -44,9 +56,7 @@ export default function CorporateDataRecoveryPage() {
                 methodology. We operate at the leading edge of data recovery technology and provide services directly to
                 criminal and civil law firms, corporate businesses, SMEs, regulatory bodies and private individuals.
               </p>
-
-              <h2 className="service-section-title mt-10">Data Recovery Expertise</h2>
-              <p className="mt-6 font-semibold text-brand-navy md:text-lg">
+              <p className="font-semibold text-brand-navy md:text-lg">
                 Specialists in forensic data recovery from all types of electronic devices.
               </p>
               <p className="mt-4 leading-relaxed text-slate-600">
@@ -60,11 +70,6 @@ export default function CorporateDataRecoveryPage() {
               </p>
               <ServiceBulletList items={recoverableDevices} />
             </div>
-
-            <ServiceImageCard
-              src="/Data-Recovery-Expertise-1.jpg"
-              alt="Hand holding a USB flash drive in a forensic data recovery setting"
-            />
           </div>
         </ServiceContentSection>
 
