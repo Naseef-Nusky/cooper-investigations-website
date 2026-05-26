@@ -6,11 +6,13 @@ export function ScrollToTop() {
 
   useEffect(() => {
     if (hash) {
-      const id = hash.replace('#', '')
-      requestAnimationFrame(() => {
+      const id = hash.replace(/^#/, '')
+      const scrollToTarget = () => {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      })
-      return
+      }
+      requestAnimationFrame(scrollToTarget)
+      const timer = window.setTimeout(scrollToTarget, 150)
+      return () => window.clearTimeout(timer)
     }
 
     window.scrollTo(0, 0)

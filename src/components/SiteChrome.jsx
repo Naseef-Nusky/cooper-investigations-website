@@ -401,12 +401,12 @@ export function SiteHeader() {
 }
 
 const footerLinks = [
-  { label: 'Investigation Services', href: '/#services' },
-  { label: 'Digital Forensics', href: '/cyber-security' },
-  { label: 'Security Services', href: '/services/close-protection' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Investigation Services', to: { pathname: '/', hash: '#services' } },
+  { label: 'Digital Forensics', to: '/cyber-security' },
+  { label: 'Security Services', to: '/services/close-protection' },
+  { label: 'About Us', to: '/about' },
+  { label: 'Contact', to: '/contact' },
+  { label: 'Privacy Policy', to: '/privacy-policy' },
 ]
 
 export function SiteFooter() {
@@ -447,9 +447,9 @@ export function SiteFooter() {
           <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
             {footerLinks.map((item) => (
               <li key={item.label}>
-                <a href={item.href} className="text-brand-teal hover:text-white">
+                <Link to={item.to} className="text-brand-teal hover:text-white">
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
