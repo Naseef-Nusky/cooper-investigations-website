@@ -75,84 +75,21 @@ body {
 }
 
 .hero-slide-bg {
-  will-change: transform, opacity;
+  will-change: opacity;
 }
 
-.hero-slide-hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  z-index: 0;
+.hero-slide-fade {
+  transition: opacity 1.2s ease-in-out;
 }
 
-.hero-slide-active {
+.hero-slide-fade-active {
   z-index: 2;
   opacity: 1;
 }
 
-.hero-slide-leaving {
+.hero-slide-fade-inactive {
   z-index: 1;
-  opacity: 1;
-}
-
-.hero-slide-in-from-right {
-  animation: hero-slide-in-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.hero-slide-in-from-left {
-  animation: hero-slide-in-left 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.hero-slide-out-to-left {
-  animation: hero-slide-out-left 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.hero-slide-out-to-right {
-  animation: hero-slide-out-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes hero-slide-in-right {
-  from {
-    transform: translateX(100%);
-    opacity: 0.85;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes hero-slide-in-left {
-  from {
-    transform: translateX(-100%);
-    opacity: 0.85;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes hero-slide-out-left {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-22%);
-    opacity: 0;
-  }
-}
-
-@keyframes hero-slide-out-right {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(22%);
-    opacity: 0;
-  }
+  opacity: 0;
 }
 
 .hero-slide-copy {
@@ -186,12 +123,17 @@ body {
   }
 }
 
-.hero-content-slide-next {
-  animation: hero-content-in-next 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+.hero-content-fade {
+  animation: hero-content-fade 1.2s ease-in-out both;
 }
 
-.hero-content-slide-prev {
-  animation: hero-content-in-prev 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+@keyframes hero-content-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes hero-ken-burns {
@@ -441,12 +383,11 @@ body {
     animation: none !important;
   }
 
-  .hero-slide-in-from-right,
-  .hero-slide-in-from-left,
-  .hero-slide-out-to-left,
-  .hero-slide-out-to-right,
-  .hero-content-slide-next,
-  .hero-content-slide-prev {
+  .hero-slide-fade {
+    transition: none !important;
+  }
+
+  .hero-content-fade {
     animation: hero-fade-up 0.5s ease forwards !important;
   }
 }
