@@ -49,12 +49,14 @@ export default function SurveillanceServicesPage() {
           <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
             <h2 className={`service-section-title ${serviceSplitCols.topic}`}>Covert Surveillance Services</h2>
             <div className={serviceSplitCols.image}>
-              <ServiceImageCard
-                src="/Covert-surveillance.jpg"
-                alt="Surveillance operative holding a professional camera on a gimbal"
-                tall
-                className="min-h-0 flex-1 md:sticky md:top-28"
-              />
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/Covert-surveillance.jpg"
+                  alt="Surveillance operative holding a professional camera on a gimbal"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
             </div>
             <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
               <p className="leading-relaxed text-slate-600">
@@ -105,10 +107,12 @@ export default function SurveillanceServicesPage() {
             <div className="grid items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
               <h2 className={`service-section-title ${serviceSideColsLg.topic}`}>Private Investigation Surveillance</h2>
               <div className={serviceSideColsLg.image}>
-                <div className="lg:sticky lg:top-28">
+                <div className="flex h-full min-h-0 flex-col lg:sticky lg:top-28">
                   <ServiceImageCard
                     src="/Professional-Surveillance-1.jpg"
                     alt="Hands cutting printed evidence on a desk during an investigation"
+                    tall
+                    className="min-h-0 flex-1"
                   />
                 </div>
               </div>

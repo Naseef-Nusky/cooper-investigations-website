@@ -26,10 +26,14 @@ export default function InternationalInvestigationPage() {
               International Investigation Services For Personal &amp; Business Clients
             </h2>
             <div className={serviceSplitCols.image}>
-              <ServiceImageCard
-                src="/International-Investigation-Services.jpg"
-                alt="Airplane flying between international city skyscrapers"
-              />
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/International-Investigation-Services.jpg"
+                  alt="Airplane flying between international city skyscrapers"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
             </div>
             <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
               <p className="leading-relaxed text-slate-600">
@@ -71,10 +75,12 @@ export default function InternationalInvestigationPage() {
                 International private investigations
               </h2>
               <div className={serviceSideColsLg.image}>
-                <div className="lg:sticky lg:top-28">
+                <div className="flex h-full min-h-0 flex-col lg:sticky lg:top-28">
                   <ServiceImageCard
                     src="/phone-chat-1.jpg"
                     alt="Hands using a smartphone outdoors"
+                    tall
+                    className="min-h-0 flex-1"
                   />
                 </div>
               </div>

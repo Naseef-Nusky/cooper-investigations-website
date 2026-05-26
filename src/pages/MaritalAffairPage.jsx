@@ -37,10 +37,14 @@ export default function MaritalAffairPage() {
           <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
             <h2 className={`service-section-title ${serviceSplitCols.topic}`}>Marital Affair Investigation</h2>
             <div className={serviceSplitCols.image}>
-              <ServiceImageCard
-                src="/Marital-Affair-Investigation.jpg"
-                alt="Couple sitting together on a bench"
-              />
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/Marital-Affair-Investigation.jpg"
+                  alt="Couple sitting together on a bench"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
             </div>
             <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
               <blockquote className="border-l-4 border-brand-teal pl-5 text-base italic leading-relaxed text-slate-700 md:text-lg">
@@ -67,10 +71,12 @@ export default function MaritalAffairPage() {
                 Look over the list below, if this sounds even remotely familiar, you need to call us today.
               </h2>
               <div className={serviceSideColsLg.image}>
-                <div className="lg:sticky lg:top-28">
+                <div className="flex h-full min-h-0 flex-col lg:sticky lg:top-28">
                   <ServiceImageCard
                     src="/phone-chat-1.jpg"
                     alt="Person reviewing information on a smartphone outdoors"
+                    tall
+                    className="min-h-0 flex-1"
                   />
                 </div>
               </div>

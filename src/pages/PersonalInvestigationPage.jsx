@@ -62,10 +62,14 @@ export default function PersonalInvestigationPage() {
                 What is a Private Investigator Allowed to Do?
               </h2>
               <div className={serviceSplitCols.image}>
-                <ServiceGraphicCard
-                  src="/Personal-Investigation-Services.png"
-                  alt="Magnifying glass over fingerprint pattern"
-                />
+                <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                  <ServiceGraphicCard
+                    src="/Personal-Investigation-Services.png"
+                    alt="Magnifying glass over fingerprint pattern"
+                    tall
+                    className="min-h-0 flex-1"
+                  />
+                </div>
               </div>
               <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
                 <p className="font-semibold text-brand-navy">Private Investigators can legally:</p>
@@ -86,8 +90,13 @@ export default function PersonalInvestigationPage() {
                 Different Types of Legal Surveillance Operations:
               </h2>
               <div className={serviceSideColsLg.image}>
-                <div className="lg:sticky lg:top-28">
-                  <ServiceImageCard src="/Legal-Surveillance.jpg" alt="Security camera mounted on a building wall" />
+                <div className="flex h-full min-h-0 flex-col lg:sticky lg:top-28">
+                  <ServiceImageCard
+                    src="/Legal-Surveillance.jpg"
+                    alt="Security camera mounted on a building wall"
+                    tall
+                    className="min-h-0 flex-1"
+                  />
                 </div>
               </div>
               <div className={`${serviceSideColsLg.body} mt-6 md:mt-0`}>

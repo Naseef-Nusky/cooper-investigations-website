@@ -74,10 +74,14 @@ export default function CorporateInvestigationsPage() {
           <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
             <h2 className={`service-section-title ${serviceSplitCols.topic}`}>Corporate Investigations</h2>
             <div className={serviceSplitCols.image}>
-              <ServiceImageCard
-                src="/Corporate-investigations-services.jpg"
-                alt="Keyboard with a small caution cone on the keys"
-              />
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/Corporate-investigations-services.jpg"
+                  alt="Keyboard with a small caution cone on the keys"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
             </div>
             <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
               <p className="leading-relaxed text-slate-600">
@@ -103,10 +107,12 @@ export default function CorporateInvestigationsPage() {
             <div className="grid items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
               <h2 className={`service-section-title ${serviceSideColsLg.topic}`}>Our Company</h2>
               <div className={serviceSideColsLg.image}>
-                <div className="lg:sticky lg:top-28">
+                <div className="flex h-full min-h-0 flex-col lg:sticky lg:top-28">
                   <ServiceImageCard
                     src="/data-protection.jpg"
                     alt="Hands typing on a laptop displaying code on the screen"
+                    tall
+                    className="min-h-0 flex-1"
                   />
                 </div>
               </div>

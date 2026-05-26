@@ -170,7 +170,7 @@ export function splitColumnClasses({ imageFirst = false, wide = false }) {
 
     return {
       topic: `${mobile.topic} lg:col-span-7 lg:col-start-1 lg:row-start-1`,
-      image: `${mobile.image} lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:row-span-2`,
+      image: `${mobile.image} self-stretch lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:row-span-2`,
       body: `${mobile.body} lg:col-span-7 lg:col-start-1 lg:row-start-2`,
     }
   }
@@ -228,10 +228,14 @@ export function ServiceImageCard({ src, alt, tall = false, className = '' }) {
   )
 }
 
-export function ServiceGraphicCard({ src, alt }) {
+export function ServiceGraphicCard({ src, alt, tall = false, className = '' }) {
   return (
-    <div className="service-graphic-card overflow-hidden rounded-2xl border border-slate-200/80 shadow-lg">
-      <div className="service-graphic-card-inner flex aspect-[4/3] items-center justify-center p-6 md:p-10">
+    <div
+      className={`service-graphic-card h-full overflow-hidden rounded-2xl border border-slate-200/80 shadow-lg ${tall ? 'md:flex md:min-h-0 md:flex-col' : ''} ${className}`}
+    >
+      <div
+        className={`service-graphic-card-inner flex items-center justify-center p-6 md:p-10 ${tall ? 'h-full min-h-[16rem] md:min-h-0 md:flex-1 md:aspect-auto' : 'aspect-[4/3]'}`}
+      >
         <img src={src} alt={alt} className="max-h-full w-full object-contain transition duration-700 hover:scale-[1.02]" />
       </div>
     </div>

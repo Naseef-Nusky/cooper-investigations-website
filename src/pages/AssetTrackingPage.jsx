@@ -38,10 +38,14 @@ export default function AssetTrackingPage() {
           <div className="mx-auto grid max-w-6xl items-start gap-12 px-4 md:grid-cols-2 md:items-stretch md:gap-16 md:px-6">
             <h2 className={`service-section-title ${serviceSplitCols.topic}`}>Asset and Vehicle Tracking</h2>
             <div className={serviceSplitCols.image}>
-              <ServiceImageCard
-                src="/Asset-and-Vehicle-Tracking.jpg"
-                alt="Black London taxi on a cobblestone street"
-              />
+              <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
+                <ServiceImageCard
+                  src="/Asset-and-Vehicle-Tracking.jpg"
+                  alt="Black London taxi on a cobblestone street"
+                  tall
+                  className="min-h-0 flex-1"
+                />
+              </div>
             </div>
             <div className={`${serviceSplitCols.body} mt-6 space-y-4 md:mt-0`}>
               <p className="leading-relaxed text-slate-600">
@@ -67,10 +71,12 @@ export default function AssetTrackingPage() {
             <div className="grid items-start gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
               <h2 className={`service-section-title ${serviceSideColsLg.topic}`}>Vehicle tracker data</h2>
               <div className={serviceSideColsLg.image}>
-                <div className="lg:sticky lg:top-28">
+                <div className="flex h-full min-h-0 flex-col lg:sticky lg:top-28">
                   <ServiceImageCard
                     src="/vehicle-tracker.jpg"
                     alt="Hand holding a smartphone displaying GPS map tracking"
+                    tall
+                    className="min-h-0 flex-1"
                   />
                 </div>
               </div>
