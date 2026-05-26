@@ -810,6 +810,45 @@ body {
   border-color: #fff;
 }
 
+.footer-social-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.75rem;
+  margin-bottom: 0;
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: #6d8496;
+  color: #f1f5f9;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.footer-social-link:hover {
+  background: var(--color-brand-teal);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+@media (width >= 40rem) {
+  .footer-social-list {
+    margin-top: 2rem;
+  }
+
+  .footer-social-link {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
 /* Page heroes (all inner pages) */
 .service-page-hero {
   min-height: 12rem;

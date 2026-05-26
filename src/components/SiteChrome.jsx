@@ -11,6 +11,7 @@ import {
   navLinks,
   investigationServices,
   digitalForensicsServices,
+  socialLinks,
 } from '../siteConfig.js'
 
 function LogoMark({ className = '' }) {
@@ -46,6 +47,54 @@ function IconMailSmall({ className = 'h-4 w-4' }) {
         d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
       />
     </svg>
+  )
+}
+
+const socialIcons = {
+  facebook: ({ className }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M13.5 9.75H16V7h-2.5c-2.48 0-4 1.52-4 4.25V12H7v2.75h2.5V22h3.75v-7.25H16l.5-2.75h-3.25v-2c0-.83.67-1.5 1.5-1.5z" />
+    </svg>
+  ),
+  twitter: ({ className }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M21.5 7.2c-.67.3-1.38.5-2.13.59a3.72 3.72 0 001.63-2.05 7.4 7.4 0 01-2.35.9 3.7 3.7 0 00-6.3 3.37 10.5 10.5 0 01-7.62-3.86 3.7 3.7 0 001.14 4.94 3.66 3.66 0 01-1.67-.46v.05a3.7 3.7 0 002.96 3.63 3.7 3.7 0 01-1.67.06 3.7 3.7 0 003.45 2.57A7.42 7.42 0 013 18.07a10.45 10.45 0 005.66 1.66c6.79 0 10.5-5.63 10.5-10.5v-.48c.72-.52 1.34-1.17 1.83-1.91z" />
+    </svg>
+  ),
+  instagram: ({ className }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} aria-hidden>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  ),
+  pinterest: ({ className }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M12 3a9 9 0 00-3.17 17.45c-.08-.72-.15-1.83.03-2.62.17-.72 1.1-4.58 1.1-4.58s-.28-.56-.28-1.39c0-1.3.75-2.27 1.69-2.27.8 0 1.18.6 1.18 1.32 0 .8-.51 2-0.77 3.12-.22.93.46 1.69 1.37 1.69 1.64 0 2.91-1.73 2.91-4.23 0-2.21-1.59-3.76-3.86-3.76-2.63 0-4.17 1.97-4.17 4.01 0 .79.3 1.64.68 2.1.08.09.09.17.07.27l-.27 1.06c-.04.17-.14.21-.32.13-1.2-.56-1.95-2.31-1.95-3.73 0-3.03 2.2-5.81 6.35-5.81 3.33 0 5.92 2.37 5.92 5.54 0 3.31-2.09 5.97-4.99 5.97-.97 0-1.89-.51-2.2-1.11l-.6 2.28c-.22.85-.81 1.92-1.21 2.57A9 9 0 1012 3z" />
+    </svg>
+  ),
+}
+
+function FooterSocialLinks() {
+  return (
+    <ul className="footer-social-list flex items-center justify-center gap-3 sm:gap-3.5">
+      {socialLinks.map((item) => {
+        const Icon = socialIcons[item.id]
+        return (
+          <li key={item.id}>
+            <a
+              href={item.href}
+              className="footer-social-link"
+              aria-label={item.label}
+              target={item.href.startsWith('http') ? '_blank' : undefined}
+              rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >
+              {Icon ? <Icon className="h-[1.125rem] w-[1.125rem] sm:h-5 sm:w-5" /> : null}
+            </a>
+          </li>
+        )
+      })}
+    </ul>
   )
 }
 
@@ -411,23 +460,15 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-4 py-6 text-center text-xs text-slate-500">
-          <p>
-            © Copyright {year} All Rights Reserved | Cooper Investigations Limited. Company registered in England and
-            Wales. Registration number 13385770.
+        <div className="footer-bar mx-auto max-w-6xl px-4 py-6 pb-12 text-center text-[10px] leading-snug text-slate-500 sm:px-6 sm:pb-6 sm:text-xs sm:leading-normal">
+          <p className="space-y-1">
+            <span className="block whitespace-nowrap">
+              © Copyright {year} All Rights Reserved | Cooper Investigations Limited.
+            </span>
+            <span className="block sm:inline">Company registered in England and Wales. </span>
+            <span className="whitespace-nowrap">Registration number 13385770.</span>
           </p>
-          <div className="mt-4 flex items-center justify-center gap-3">
-            {['Facebook', 'Twitter', 'Instagram', 'Pinterest'].map((network) => (
-              <a
-                key={network}
-                href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-[10px] font-semibold uppercase text-slate-400 transition hover:border-brand-teal hover:text-white"
-                aria-label={network}
-              >
-                {network[0]}
-              </a>
-            ))}
-          </div>
+          <FooterSocialLinks />
         </div>
       </div>
       <a

@@ -11,6 +11,14 @@ export const SITE_ADDRESS = {
   country: 'United Kingdom',
 }
 
+/** Footer social profiles — update hrefs when live URLs are available */
+export const socialLinks = [
+  { id: 'facebook', label: 'Facebook', href: '#' },
+  { id: 'twitter', label: 'Twitter', href: '#' },
+  { id: 'instagram', label: 'Instagram', href: '#' },
+  { id: 'pinterest', label: 'Pinterest', href: '#' },
+]
+
 export const navLinks = [
   { to: '/about', label: 'About Us' },
   { to: '/#services', label: 'Investigation Services', menu: 'investigation' },
