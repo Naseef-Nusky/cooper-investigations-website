@@ -1,3 +1,5 @@
+import { useContactForm } from '../hooks/useContactForm.js'
+
 function IconUser({ className = 'h-5 w-5' }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -59,41 +61,144 @@ function IconPencil({ className = 'h-5 w-5' }) {
 }
 
 const fields = [
-  { icon: IconUser, label: 'Your name *', type: 'text', name: 'name', required: true },
-  { icon: IconAt, label: 'Your email *', type: 'email', name: 'email', required: true },
-  { icon: IconDocument, label: 'Subject *', type: 'text', name: 'subject', required: true },
-  { icon: IconPhone, label: 'Phone *', type: 'tel', name: 'phone', required: true },
+  { icon: IconUser, label: 'Your name *', type: 'text', name: 'name', placeholder: 'Your name...' },
+  { icon: IconAt, label: 'Your email *', type: 'email', name: 'email', placeholder: 'Email address...' },
+  { icon: IconDocument, label: 'Subject *', type: 'text', name: 'subject', placeholder: 'Subject...' },
+  { icon: IconPhone, label: 'Phone *', type: 'tel', name: 'phone', placeholder: 'Phone...' },
 ]
 
-export default function ContactForm({ className = '' }) {
-  function handleSubmit(e) {
-    e.preventDefault()
+function FieldError({ id, message }) {
+  if (!message) return null
+
+  return (
+    <p id={id} className="contact-form-error" role="alert">
+      {message}
+    </p>
+  )
+}
+
+export default function ContactForm({ className = '', variant = 'default' }) {
+  const { values, status, handleChange, handleBlur, handleSubmit, showError } = useContactForm()
+  const isHome = variant === 'home'
+
+  if (isHome) {
+    return (
+      <form onSubmit={handleSubmit} className={`contact-form-home ${className}`} noValidate>
+        {status === 'success' ? (
+          <p className="contact-form-success mb-4" role="status">
+            Thank you. Your message has been received and we will be in touch shortly.
+          </p>
+        ) : null}
+
+        {fields.map((field) => {
+          const Icon = field.icon
+          const error = showError(field.name)
+          const inputId = `contact-${field.name}`
+          const errorId = `${inputId}-error`
+
+          return (
+            <div key={field.name} className="contact-form-home-field">
+              <label
+                className={`contact-form-home-input ${error ? 'contact-form-home-input--error' : ''}`}
+                htmlFor={inputId}
+              >
+                <span className="text-slate-400" aria-hidden>
+                  <Icon />
+                </span>
+                <input
+                  id={inputId}
+                  className="min-w-0 flex-1 border-0 bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400"
+                  type={field.type}
+                  name={field.name}
+                  value={values[field.name]}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder={field.placeholder}
+                  aria-invalid={error ? 'true' : undefined}
+                  aria-describedby={error ? errorId : undefined}
+                  autoComplete={
+                    field.name === 'email' ? 'email' : field.name === 'name' ? 'name' : field.name === 'phone' ? 'tel' : undefined
+                  }
+                />
+              </label>
+              <FieldError id={errorId} message={error} />
+            </div>
+          )
+        })}
+
+        <div className="contact-form-home-field">
+          <label
+            className={`contact-form-home-input contact-form-home-input--textarea ${showError('message') ? 'contact-form-home-input--error' : ''}`}
+            htmlFor="contact-message"
+          >
+            <span className="pt-1 text-slate-400" aria-hidden>
+              <IconPencil />
+            </span>
+            <textarea
+              id="contact-message"
+              className="min-h-[120px] w-full resize-y border-0 bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400"
+              name="message"
+              value={values.message}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="Your message..."
+              rows={4}
+              aria-invalid={showError('message') ? 'true' : undefined}
+              aria-describedby={showError('message') ? 'contact-message-error' : undefined}
+            />
+          </label>
+          <FieldError id="contact-message-error" message={showError('message')} />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded bg-brand-navy py-3.5 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-brand-green"
+        >
+          Submit
+        </button>
+      </form>
+    )
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`contact-form ${className}`}>
+    <form onSubmit={handleSubmit} className={`contact-form ${className}`} noValidate>
+      {status === 'success' ? (
+        <p className="contact-form-success" role="status">
+          Thank you. Your message has been received and we will be in touch shortly.
+        </p>
+      ) : null}
+
       {fields.map((field) => {
         const Icon = field.icon
+        const error = showError(field.name)
+        const inputId = `contact-${field.name}`
+        const errorId = `${inputId}-error`
+
         return (
           <div key={field.name} className="contact-form-group">
-            <label className="contact-form-label" htmlFor={`contact-${field.name}`}>
+            <label className="contact-form-label" htmlFor={inputId}>
               {field.label}
             </label>
-            <div className="contact-form-input-wrap">
+            <div className={`contact-form-input-wrap ${error ? 'contact-form-input-wrap--error' : ''}`}>
               <span className="contact-form-input-icon" aria-hidden>
                 <Icon />
               </span>
               <input
-                id={`contact-${field.name}`}
+                id={inputId}
                 className="contact-form-input"
                 type={field.type}
                 name={field.name}
-                required={field.required}
+                value={values[field.name]}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                aria-invalid={error ? 'true' : undefined}
+                aria-describedby={error ? errorId : undefined}
                 autoComplete={
                   field.name === 'email' ? 'email' : field.name === 'name' ? 'name' : field.name === 'phone' ? 'tel' : undefined
                 }
               />
             </div>
+            <FieldError id={errorId} message={error} />
           </div>
         )
       })}
@@ -102,7 +207,9 @@ export default function ContactForm({ className = '' }) {
         <label className="contact-form-label" htmlFor="contact-message">
           Your message (optional)
         </label>
-        <div className="contact-form-input-wrap contact-form-textarea-wrap">
+        <div
+          className={`contact-form-input-wrap contact-form-textarea-wrap ${showError('message') ? 'contact-form-input-wrap--error' : ''}`}
+        >
           <span className="contact-form-input-icon contact-form-input-icon-top" aria-hidden>
             <IconPencil />
           </span>
@@ -110,9 +217,15 @@ export default function ContactForm({ className = '' }) {
             id="contact-message"
             className="contact-form-input contact-form-textarea"
             name="message"
+            value={values.message}
+            onChange={handleChange}
+            onBlur={handleBlur}
             rows={5}
+            aria-invalid={showError('message') ? 'true' : undefined}
+            aria-describedby={showError('message') ? 'contact-message-error' : undefined}
           />
         </div>
+        <FieldError id="contact-message-error" message={showError('message')} />
       </div>
 
       <button type="submit" className="contact-form-submit">

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import HeroCarousel from '../HeroCarousel.jsx'
+import ContactForm from '../components/ContactForm.jsx'
 import { PageShell } from '../components/SiteChrome.jsx'
 import { serviceSplitCols } from '../components/ServicePageLayout.jsx'
 
@@ -138,46 +139,6 @@ function IconPin({ className = 'h-5 w-5' }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
-    </svg>
-  )
-}
-
-function IconUser({ className = 'h-5 w-5' }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-    </svg>
-  )
-}
-
-function IconEnvelope({ className = 'h-5 w-5' }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-    </svg>
-  )
-}
-
-function IconPhone({ className = 'h-5 w-5' }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-      />
-    </svg>
-  )
-}
-
-function IconChat({ className = 'h-5 w-5' }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-      />
     </svg>
   )
 }
@@ -340,10 +301,6 @@ function LocationsSection() {
 
 
 export default function HomePage() {
-  function handleSubmit(e) {
-    e.preventDefault()
-  }
-
   return (
     <PageShell>
       <main id="main">
@@ -503,42 +460,7 @@ export default function HomePage() {
               <h2 className="text-3xl font-bold md:text-4xl">Contact us</h2>
               <p className="mt-2 text-lg text-white/85">Drop us a message</p>
             </div>
-            <form onSubmit={handleSubmit} className="mt-10 space-y-4">
-              {[
-                { icon: <IconUser />, placeholder: 'Your name...', type: 'text', name: 'name' },
-                { icon: <IconEnvelope />, placeholder: 'Email address...', type: 'email', name: 'email' },
-                { icon: <IconChat />, placeholder: 'Subject...', type: 'text', name: 'subject' },
-                { icon: <IconPhone />, placeholder: 'Phone...', type: 'tel', name: 'phone' },
-              ].map((field) => (
-                <label key={field.name} className="flex items-center gap-3 rounded border border-slate-200 bg-white px-4 py-3 shadow-sm">
-                  <span className="text-slate-400">{field.icon}</span>
-                  <input
-                    className="min-w-0 flex-1 border-0 bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400"
-                    type={field.type}
-                    name={field.name}
-                    placeholder={field.placeholder}
-                    autoComplete={field.name === 'email' ? 'email' : undefined}
-                  />
-                </label>
-              ))}
-              <label className="flex gap-3 rounded border border-slate-200 bg-white px-4 py-3 shadow-sm">
-                <span className="pt-1 text-slate-400">
-                  <IconChat />
-                </span>
-                <textarea
-                  className="min-h-[120px] w-full resize-y border-0 bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400"
-                  name="message"
-                  placeholder="Your message..."
-                  rows={4}
-                />
-              </label>
-              <button
-                type="submit"
-                className="w-full rounded bg-brand-navy py-3.5 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-brand-green"
-              >
-                Submit
-              </button>
-            </form>
+            <ContactForm variant="home" className="mt-10" />
           </div>
         </section>
       </main>
