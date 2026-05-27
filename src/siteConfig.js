@@ -46,7 +46,7 @@ export const routeHeroImages = {
   '/services/asset-and-vehicle-tracking': '/Asset-and-Vehicle-Tracking.jpg',
   '/services/corporate-investigations': '/Corporate-investigations-services.jpg',
   '/services/international-investigation': '/International-Investigation-Services.jpg',
-  '/services/surveillance': '/Covert-surveillance.jpg',
+  '/services/surveillance': '/Covert-surveillance.png',
   '/services/close-protection': '/Close-Protection-Services-1.jpg',
   '/cyber-security': '/experts-in-cyber-security-UK.jpg',
   '/corporate-data-recovery': '/Data-Recovery-Expertise-1.jpg',

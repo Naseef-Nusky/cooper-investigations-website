@@ -708,16 +708,6 @@ body {
   letter-spacing: -0.02em;
 }
 
-.about-section-title::after {
-  content: '';
-  display: block;
-  width: 3.5rem;
-  height: 3px;
-  margin-top: 0.75rem;
-  border-radius: 2px;
-  background: linear-gradient(90deg, var(--color-brand-teal), var(--color-brand-green));
-}
-
 .about-cta-bg {
   position: absolute;
   inset: 0;
@@ -839,16 +829,6 @@ body {
   font-weight: 700;
   color: var(--color-brand-navy);
   letter-spacing: -0.02em;
-}
-
-.service-section-title::after {
-  content: '';
-  display: block;
-  width: 3.5rem;
-  height: 3px;
-  margin-top: 0.75rem;
-  border-radius: 2px;
-  background: linear-gradient(90deg, var(--color-brand-teal), var(--color-brand-green));
 }
 
 .service-bullet-icon {

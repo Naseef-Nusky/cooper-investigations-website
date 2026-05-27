@@ -51,7 +51,7 @@ export default function SurveillanceServicesPage() {
             <div className={serviceSplitCols.image}>
               <div className="flex h-full min-h-0 flex-col md:sticky md:top-28">
                 <ServiceImageCard
-                  src="/Covert-surveillance.jpg"
+                  src="/Covert-surveillance.png"
                   alt="Surveillance operative holding a professional camera on a gimbal"
                   tall
                   className="min-h-0 flex-1"
