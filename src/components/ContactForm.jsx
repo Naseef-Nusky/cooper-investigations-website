@@ -78,7 +78,7 @@ function FieldError({ id, message }) {
 }
 
 export default function ContactForm({ className = '', variant = 'default' }) {
-  const { values, status, handleChange, handleBlur, handleSubmit, showError } = useContactForm()
+  const { values, status, errors, isSending, handleChange, handleBlur, handleSubmit, showError } = useContactForm()
   const isHome = variant === 'home'
 
   if (isHome) {
@@ -87,6 +87,11 @@ export default function ContactForm({ className = '', variant = 'default' }) {
         {status === 'success' ? (
           <p className="contact-form-success mb-4" role="status">
             Thank you. Your message has been received and we will be in touch shortly.
+          </p>
+        ) : null}
+        {status === 'error' && errors?.submit ? (
+          <p className="contact-form-error mb-4" role="alert">
+            {errors.submit}
           </p>
         ) : null}
 
@@ -153,8 +158,9 @@ export default function ContactForm({ className = '', variant = 'default' }) {
         <button
           type="submit"
           className="w-full rounded bg-brand-navy py-3.5 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-brand-green"
+          disabled={isSending}
         >
-          Submit
+          {isSending ? 'Sending…' : 'Submit'}
         </button>
       </form>
     )
@@ -165,6 +171,11 @@ export default function ContactForm({ className = '', variant = 'default' }) {
       {status === 'success' ? (
         <p className="contact-form-success" role="status">
           Thank you. Your message has been received and we will be in touch shortly.
+        </p>
+      ) : null}
+      {status === 'error' && errors?.submit ? (
+        <p className="contact-form-error" role="alert">
+          {errors.submit}
         </p>
       ) : null}
 
@@ -228,8 +239,8 @@ export default function ContactForm({ className = '', variant = 'default' }) {
         <FieldError id="contact-message-error" message={showError('message')} />
       </div>
 
-      <button type="submit" className="contact-form-submit">
-        SUBMIT
+      <button type="submit" className="contact-form-submit" disabled={isSending}>
+        {isSending ? 'SENDING…' : 'SUBMIT'}
       </button>
     </form>
   )
